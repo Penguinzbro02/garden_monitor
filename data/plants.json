@@ -15,7 +15,8 @@
       "Mature"
     ],
     "planting_season": "Spring",
-    "harvest_time": "60-85 days"
+    "harvest_time": "60-85 days",
+    "description": "Tomatoes are a popular vegetable known for their juicy, red fruits."
   },
   {
     "plant_id": 2,
@@ -32,7 +33,8 @@
       "Mature"
     ],
     "planting_season": "Spring",
-    "harvest_time": "70-80 days"
+    "harvest_time": "70-80 days",
+    "description": "Carrots are root vegetables that are typically orange in color and rich in vitamins."
   },
   {
     "plant_id": 3,
@@ -50,6 +52,7 @@
       "Mature"
     ],
     "planting_season": "Spring",
-    "harvest_time": "90-120 days"
+    "harvest_time": "90-120 days",
+    "description": "Roses are flowering plants known for their beautiful and fragrant blooms."
   }
 ]
