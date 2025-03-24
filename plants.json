@@ -1,0 +1,55 @@
+[
+    {
+        "plant_id": 1,
+        "plant_name": "Tomato",
+        "plant_type": "Vegetable",
+        "ideal_temperature": {
+            "min": 15,
+            "max": 30
+        },
+        "growth_stages": [
+            "Germination",
+            "Seedling",
+            "Vegetative",
+            "Flowering",
+            "Mature"
+        ],
+        "planting_season": "Spring",
+        "harvest_time": "60-85 days"
+    },
+    {
+        "plant_id": 2,
+        "plant_name": "Carrot",
+        "plant_type": "Root",
+        "ideal_temperature": {
+            "min": 10,
+            "max": 25
+        },
+        "growth_stages": [
+            "Germination",
+            "Seedling",
+            "Vegetative",
+            "Mature"
+        ],
+        "planting_season": "Spring",
+        "harvest_time": "70-80 days"
+    },
+    {
+        "plant_id": 3,
+        "plant_name": "Rose",
+        "plant_type": "Flower",
+        "ideal_temperature": {
+            "min": 18,
+            "max": 28
+        },
+        "growth_stages": [
+            "Germination",
+            "Seedling",
+            "Vegetative",
+            "Flowering",
+            "Mature"
+        ],
+        "planting_season": "Spring",
+        "harvest_time": "90-120 days"
+    }
+]

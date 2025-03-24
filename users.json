@@ -1,0 +1,18 @@
+[
+    {
+        "user_id": 1,
+        "email": "user1@example.com",
+        "preferences": {
+            "location": "New York",
+            "unit_system": "metric"
+        }
+    },
+    {
+        "user_id": 2,
+        "email": "user2@example.com",
+        "preferences": {
+            "location": "California",
+            "unit_system": "imperial"
+        }
+    }
+]
