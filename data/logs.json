@@ -1,0 +1,24 @@
+[
+  {
+    "user_id": 1,
+    "plant_id": 1,
+    "plant_start_date": "2025-03-01",
+    "plant_end_date": null,
+    "height_history": ["10 cm", "15 cm"],
+    "watering_history": ["2025-03-01", "2025-03-05", "2025-03-10"],
+    "fertilizer_history": ["2025-03-01", "2025-03-15"],
+    "photo": null,
+    "notes": null
+  },
+  {
+    "user_id": 2,
+    "plant_id": 2,
+    "plant_start_date": "2025-03-15",
+    "plant_end_date": null,
+    "height_history": ["5 cm", "8 cm"],
+    "watering_history": ["2025-03-15", "2025-03-22"],
+    "fertilizer_history": ["2025-03-18"],
+    "photo": null,
+    "notes": "water once per week"
+  }
+]
