@@ -32,10 +32,25 @@ def print_plants():
         print(f"  Harvest Time: {plant['harvest_time']}")
         print()
 
+def print_logs():
+    logs = load_data('data/logs.json')
+    print("Logs:")
+    for log in logs:
+        print(f"User ID: {log['user_id']}")
+        print(f"Plant ID: {log['plant_id']}")
+        print(f"Plant Start Date: {log['plant_start_date']}")
+        print(f"Plant End Date: {log['plant_end_date']}")
+        print(f"Height History: {', '.join(log['height_history'])}")
+        print(f"Watering History: {', '.join(log['watering_history'])}")
+        print(f"Fertilizer History: {', '.join(log['fertilizer_history'])}")
+        print(f"Photo: {log['photo']}")
+        print(f"Notes: {log['notes']}")
+        print()
 
 def main():
     print_users()
     print_plants()
+    print_logs()
 
 
 if __name__ == "__main__":
