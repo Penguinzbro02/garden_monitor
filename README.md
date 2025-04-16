@@ -8,3 +8,9 @@ Garden Monitor is a tool designed to help gardeners of all experience levels car
 python -m venv venv
 venv\Scripts\activate && python app.py
 ```
+
+# Steps to Run the web app
+
+```bash
+npm start
+```
