@@ -3,9 +3,9 @@ import { Navbar } from './components/Navbar';
 import { Routes, Route } from 'react-router-dom';
 import Home from './components/pages/Home';
 import Login from './components/pages/Login';
-import Log from './components/pages/Log'
-import Calendar from './components/pages/Calendar'
-import Weather from './components/pages/Weather'
+import Log from './components/pages/Log';
+import Calendar from './components/pages/Calendar';
+import Weather from './components/pages/Weather';
 
 function App() {
   return (
