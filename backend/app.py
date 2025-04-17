@@ -1,50 +1,42 @@
 from flask import Flask, jsonify
-import json
 from flask_cors import CORS
+import json
 
+# Initialize Flask app and enable CORS
 app = Flask(__name__)
-CORS(app)  # Enable Cross-Origin Resource Sharing for frontend-backend communication
+CORS(app)
 
+# API route to calculate and return plant statistics
 @app.route('/api/statistics', methods=['GET'])
 def get_statistics():
-    # Load the plants data from the JSON file
+    # Load plant data
     with open('../data/plants_data.json', 'r') as file:
         plants = json.load(file)
 
-    # Calculate statistics
-    total_plants = len(plants)
-    families = {}
-    genera = {}
-    authors = {}
-    years = []
-
-    for plant in plants:
-        # Count families
-        family = plant.get('family', 'Unknown')
-        families[family] = families.get(family, 0) + 1
-
-        # Count genera
-        genus = plant.get('genus', 'Unknown')
-        genera[genus] = genera.get(genus, 0) + 1
-
-        # Count authors
-        author = plant.get('author', 'Unknown')
-        authors[author] = authors.get(author, 0) + 1
-
-        # Collect years
-        if 'year' in plant:
-            years.append(plant['year'])
-
-    statistics = {
-        "total_plants": total_plants,
-        "families": families,
-        "genera": genera,
-        "authors": authors,
-        "earliest_year": min(years) if years else None,
-        "latest_year": max(years) if years else None,
+    # Initialize statistics containers
+    stats = {
+        "total_plants": len(plants),
+        "families": {},
+        "genera": {},
+        "authors": {},
+        "years": []
     }
 
-    return jsonify(statistics)
+    # Process plant data
+    for plant in plants:
+        stats["families"][plant.get('family', 'Unknown')] = stats["families"].get(plant.get('family', 'Unknown'), 0) + 1
+        stats["genera"][plant.get('genus', 'Unknown')] = stats["genera"].get(plant.get('genus', 'Unknown'), 0) + 1
+        stats["authors"][plant.get('author', 'Unknown')] = stats["authors"].get(plant.get('author', 'Unknown'), 0) + 1
+        if 'year' in plant:
+            stats["years"].append(plant['year'])
 
+    # Add year statistics
+    stats["earliest_year"] = min(stats["years"]) if stats["years"] else None
+    stats["latest_year"] = max(stats["years"]) if stats["years"] else None
+    del stats["years"]  # Remove raw years list to keep response clean
+
+    return jsonify(stats)
+
+# Run the app
 if __name__ == '__main__':
     app.run(debug=True)
