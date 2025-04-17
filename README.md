@@ -27,6 +27,7 @@ npm install react-router-dom@6
 # Steps to Run the web app
 
 ```bash
+cd client
 npm start
 ```
 
