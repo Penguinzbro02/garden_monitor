@@ -1,0 +1,20 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "name": "Plantae",
+            "slug": "plantae",
+            "links": {
+                "self": "/api/v1/kingdoms/plantae"
+            }
+        }
+    ],
+    "links": {
+        "self": "/api/v1/kingdoms",
+        "first": "/api/v1/kingdoms?page=1",
+        "last": "/api/v1/kingdoms?page=1"
+    },
+    "meta": {
+        "total": 1
+    }
+}

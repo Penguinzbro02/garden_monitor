@@ -6,7 +6,10 @@ Garden Monitor is a tool designed to help gardeners of all experience levels car
 
 ```bash
 python -m venv venv
+venv\Scripts\activate && pip install requests
+
 venv\Scripts\activate && python app.py
+venv\Scripts\activate && python fetch_plant_data.py
 ```
 
 # Install the latest stable versions of react and react-dom
