@@ -6,6 +6,7 @@ import Login from './components/pages/Login';
 import Log from './components/pages/Log';
 import Calendar from './components/pages/Calendar';
 import Weather from './components/pages/Weather';
+import Statistics from './components/pages/Statistics';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/Log" element={<Log />} />
         <Route path="/Calendar" element={<Calendar />} />
         <Route path="/Weather" element={<Weather />} />
+        <Route path="/statistics" element={<Statistics />} />
       </Routes>
     </div>
   );
