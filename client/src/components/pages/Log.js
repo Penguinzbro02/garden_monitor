@@ -1,5 +1,12 @@
+import { Form } from '../plant_log'
 const Log = () => {
-    return <div>Plant Status Page</div>;
+    return (
+        <div>
+            <h1>Plant Status Page</h1>
+            <Form />
+        </div>
+    );
+
 };
 
 export default Log;

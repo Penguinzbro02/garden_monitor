@@ -29,3 +29,8 @@ npm install react-router-dom@6
 ```bash
 npm start
 ```
+
+## Packages used
+
+- react-hook-form
+- yup
