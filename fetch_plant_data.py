@@ -3,58 +3,54 @@ import requests
 import json
 
 # Configuration
-API_URL = "https://trefle.io/api/v1/plants"
-KINGDOMS_URL = "https://trefle.io/api/v1/kingdoms"
 API_KEY = ""  # Replace with your actual Trefle API key
-
 if not API_KEY:
     raise ValueError("API_KEY must be set. Please provide your Trefle API key.")
 
+BASE_URL = "https://trefle.io/api/v1"
 DATA_DIR = "data"
-OUTPUT_FILE = os.path.join(DATA_DIR, "plants_data.json")
-KINGDOMS_OUTPUT_FILE = os.path.join(DATA_DIR, "kingdoms_data.json")
+PLANTS_FILE = os.path.join(DATA_DIR, "plants_data.json")
+KINGDOMS_FILE = os.path.join(DATA_DIR, "kingdoms_data.json")
 
-# Fetch and save plant data
+# Fetch plant data from API and save to file
 def fetch_plant_data():
     try:
-        response = requests.get(API_URL, params={"token": API_KEY})  # API request
-        response.raise_for_status()  # Check for errors
-        plant_data = response.json()  # Parse response
+        plants = []
+        for page in range(1, 6):  # Fetch first 5 pages
+            print(f"Fetching plants, page {page}...")
+            response = requests.get(f"{BASE_URL}/plants", params={"token": API_KEY, "page": page})
+            response.raise_for_status()
+            data = response.json().get("data", [])
+            plants.extend(data)
 
-        # Sort the data by 'id' in ascending order
-        if isinstance(plant_data, dict) and "data" in plant_data:
-            plant_data["data"] = sorted(plant_data["data"], key=lambda x: x["id"])
-            
-            # Print the number of plants
-            print(f"Number of plants: {len(plant_data['data'])}")
+        plants.sort(key=lambda x: x["id"])  # Sort by ID
+        print(f"Total plants fetched: {len(plants)}")
 
-        with open(OUTPUT_FILE, "w") as file:  # Save to file
-            json.dump(plant_data, file, indent=4)
-
-        print(f"Data saved to {OUTPUT_FILE}")
+        with open(PLANTS_FILE, "w") as file:
+            json.dump(plants, file, indent=4)
+        print(f"Plant data saved to {PLANTS_FILE}")
     except requests.exceptions.RequestException as e:
         print(f"Request error: {e}")
     except Exception as e:
         print(f"Unexpected error: {e}")
 
-# Fetch and save kingdom data
+# Fetch kingdom data from API and save to file
 def fetch_kingdom_data():
     try:
-        response = requests.get(KINGDOMS_URL, params={"token": API_KEY})  # API request
-        response.raise_for_status()  # Check for errors
-        kingdom_data = response.json()  # Parse response
+        print("Fetching kingdom data...")
+        response = requests.get(f"{BASE_URL}/kingdoms", params={"token": API_KEY})
+        response.raise_for_status()
+        kingdoms = response.json()
 
-        # Save the data to a file
-        with open(KINGDOMS_OUTPUT_FILE, "w") as file:
-            json.dump(kingdom_data, file, indent=4)
-
-        print(f"Kingdom data saved to {KINGDOMS_OUTPUT_FILE}")
+        with open(KINGDOMS_FILE, "w") as file:
+            json.dump(kingdoms, file, indent=4)
+        print(f"Kingdom data saved to {KINGDOMS_FILE}")
     except requests.exceptions.RequestException as e:
         print(f"Request error: {e}")
     except Exception as e:
         print(f"Unexpected error: {e}")
 
-# Entry point
+# Main execution
 if __name__ == "__main__":
     fetch_plant_data()
     fetch_kingdom_data()
