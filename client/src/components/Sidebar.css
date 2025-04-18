@@ -23,6 +23,10 @@
   align-items: center;
 }
 
-.SidebarList a:hover {
-  text-decoration: underline;
+.SidebarList .row:hover {
+  background-color: #6cace0;
+}
+
+.SidebarList .row.active {
+  background-color: #6cace0;
 }
