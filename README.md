@@ -50,3 +50,4 @@ npm start
 
 - react-hook-form
 - yup
+- @hookform/resolvers
