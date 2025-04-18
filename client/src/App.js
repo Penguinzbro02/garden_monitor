@@ -1,5 +1,5 @@
 import './App.css';
-import { Navbar } from './components/Navbar';
+import { Sidebar } from './components/Sidebar';
 import { Routes, Route } from 'react-router-dom';
 import Home from './components/pages/Home';
 import Login from './components/pages/Login';
@@ -11,15 +11,17 @@ import Statistics from './components/pages/Statistics';
 function App() {
   return (
     <div className="App">
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Login" element={<Login />} />
-        <Route path="/Log" element={<Log />} />
-        <Route path="/Calendar" element={<Calendar />} />
-        <Route path="/Weather" element={<Weather />} />
-        <Route path="/statistics" element={<Statistics />} />
-      </Routes>
+      <Sidebar />
+      <div className="Container">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/Login" element={<Login />} />
+          <Route path="/Log" element={<Log />} />
+          <Route path="/Calendar" element={<Calendar />} />
+          <Route path="/Weather" element={<Weather />} />
+          <Route path="/Statistics" element={<Statistics />} />
+        </Routes>
+      </div>
     </div>
   );
 }

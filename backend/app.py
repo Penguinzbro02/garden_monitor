@@ -44,6 +44,10 @@ def get_statistics():
 
     return jsonify(stats)
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return "Error: Page not found", 404
+
 # Run the app
 if __name__ == '__main__':
     app.run(debug=True)
