@@ -19,7 +19,8 @@ def get_statistics():
         "families": {},
         "genera": {},
         "authors": {},
-        "years": []
+        "years": [],
+        "sample_plants": []
     }
 
     # Process plant data
@@ -34,6 +35,12 @@ def get_statistics():
     stats["earliest_year"] = min(stats["years"]) if stats["years"] else None
     stats["latest_year"] = max(stats["years"]) if stats["years"] else None
     del stats["years"]  # Remove raw years list to keep response clean
+
+    # Add a sample of 10 plants with name and image_url
+    stats["sample_plants"] = [
+        {"name": plant.get("common_name", "Unknown"), "image_url": plant.get("image_url", "")}
+        for plant in plants[:10]
+    ]
 
     return jsonify(stats)
 
