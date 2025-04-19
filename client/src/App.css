@@ -19,19 +19,49 @@ body {
   height: 100%;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  width: 400px;
-}
-
-.form-error {
-  color: red;
-}
-
 .Container {
   flex: 1;
   padding: 50px;
   box-sizing: border-box;
   overflow-y: auto;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+form input,
+form textarea,
+form button {
+  width: 100%;
+  max-width: 500px;
+  font-size: 16px;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+form textarea {
+  height: 150px;
+  resize: vertical;
+}
+
+form button {
+  background-color: #70ac72;
+  color: white;
+}
+.form-error {
+  width: 100%;
+  max-width: 500px;
+  color: red;
+  padding: 10px;
 }

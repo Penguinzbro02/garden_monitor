@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 import json
 
@@ -43,6 +43,31 @@ def get_statistics():
     ]
 
     return jsonify(stats)
+
+# Retrieves the incoming form data from the post request. Then save them to JSON file
+LOGS_FILE = '../data/logs.json'
+@app.route('/api/save-log', methods=['POST'])
+def save_log():
+    try:
+        new_log = request.json
+        reversed_log = {key: new_log[key] for key in reversed(new_log)}
+
+        try:
+            with open(LOGS_FILE, 'r') as file:
+                logs = json.load(file)  
+        except FileNotFoundError:
+            logs = []  
+        # handle empty json file
+        except json.JSONDecodeError:
+            logs = []  
+        logs.append(reversed_log)
+
+        with open(LOGS_FILE, 'w') as file:
+            json.dump(logs, file, indent=4)  
+
+        return jsonify({'message': 'Log saved successfully!'}), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 @app.errorhandler(404)
 def page_not_found(e):

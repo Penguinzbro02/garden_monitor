@@ -27,23 +27,43 @@ export const Form = () => {
         resolver: yupResolver(schema),
     });
 
-    // display the submitted form data to console
-    const onSubmit = (data) => {
+    // Sends data to backend API endpoint 
+    const onSubmit = async (data) => {
         console.log(data);
+        try {
+            const response = await fetch('http://127.0.0.1:5000/api/save-log', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+
+            if (response.ok) {
+                console.log('Log saved successfully!');
+            } else {
+                console.error('Failed to save log.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
     };
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <input type="text" name="name" placeholder="Name" {...register("name")} />
-            <input type="date" name="plant_start_date" {...register("plantStartDate")} />
-            <input type="text" name="height_history" {...register("height")} />
-            <input type="date" name="watering_history" {...register("water")} />
-            <input type="date" name="fertilizer_history" {...register("fertilizer")} />
-            <input type="text" name="photo" {...register("photo")} />
-            <textarea name="notes"{...register("notes")} ></textarea>
+            <input type="text" id="name" name="name" placeholder="Name" {...register("name")} />
+            <label htmlFor="plant_start_date">Plant Start Date</label>
+            <input type="date" id="plant_start_date" name="plant_start_date" {...register("plantStartDate")} />
+            <input type="text" id="height_history" name="height_history" placeholder="Height" {...register("height")} />
+            <label htmlFor="watering_history">Last Watered:</label>
+            <input type="date" id="watering_history" name="watering_history" {...register("water")} />
+            <label htmlFor="fertilizer_history">Last Fertilized:</label>
+            <input type="date" id="fertilizer_history" name="fertilizer_history" {...register("fertilizer")} />
+            <input type="text" id="photo" name="photo" placeholder="Photo url" {...register("photo")} />
+            <textarea id="notes" name="notes" placeholder="Notes" {...register("notes")}></textarea>
+
             <button type="submit">Submit</button>
             <p className="form-error">{errors.name?.message}</p>
             <p className="form-error">{errors.plantStartDate?.message}</p>
-
         </form>
     );
 };
