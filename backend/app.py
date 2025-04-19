@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 import json
 
@@ -68,6 +68,11 @@ def save_log():
         return jsonify({'message': 'Log saved successfully!'}), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+# Get files from data directory
+@app.route('/data/<path:filename>', methods=['GET'])
+def get_data(filename):
+    return send_from_directory('../data', filename)
 
 @app.errorhandler(404)
 def page_not_found(e):
