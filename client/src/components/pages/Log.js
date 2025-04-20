@@ -9,8 +9,14 @@ const Log = () => {
         fetch('http://127.0.0.1:5000/data/logs.json')
             .then(res => res.json())
             .then(data => {
-                setColumn(Object.keys(data[0]));
-                setRecords(data);
+                if (Array.isArray(data) && data.length > 0) {
+                    setColumn(Object.keys(data[0]));
+                    setRecords(data);
+                } else {
+                    setColumn([]);
+                    setRecords([]);
+                }
+
             })
     }, [])
     return (
@@ -25,7 +31,7 @@ const Log = () => {
                         <div><strong>Height:</strong> {record.height || 'N/A'}</div>
                         <div><strong>Water:</strong> {record.water || 'N/A'}</div>
                         <div><strong>Fertilizer:</strong> {record.fertilizer || 'N/A'}</div>
-                        <div><strong>Photo:</strong> {record.photo || 'N/A'}</div>
+                        {/* <div><strong>Photo:</strong> {record.photo || 'N/A'}</div> */}
                         <div><strong>Notes:</strong> {record.notes || 'N/A'}</div>
                     </li>
                 ))}

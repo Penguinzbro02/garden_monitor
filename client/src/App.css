@@ -65,3 +65,7 @@ form button {
   color: red;
   padding: 10px;
 }
+.image-upload {
+  max-width: 200px;
+  max-height: 200px;
+}

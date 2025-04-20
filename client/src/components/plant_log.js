@@ -1,8 +1,19 @@
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 
 export const Form = () => {
+    const [file, setFile] = useState();
+    function handleChange(e) {
+        if (!e.target.files || e.target.files.length === 0) {
+            setFile(null);
+            return;
+        }
+
+        console.log(e.target.files);
+        setFile(URL.createObjectURL(e.target.files[0]));
+    }
     // set the data types of the form fields
     const schema = yup.object().shape({
         name: yup.string().required("Name is a required field"),
@@ -58,9 +69,12 @@ export const Form = () => {
             <input type="date" id="watering_history" name="watering_history" {...register("water")} />
             <label htmlFor="fertilizer_history">Last Fertilized:</label>
             <input type="date" id="fertilizer_history" name="fertilizer_history" {...register("fertilizer")} />
-            <input type="text" id="photo" name="photo" placeholder="Photo url" {...register("photo")} />
-            <textarea id="notes" name="notes" placeholder="Notes" {...register("notes")}></textarea>
 
+            {/* upload photo from computer*/}
+            <input type="file" onChange={handleChange} />
+            <img className="image-upload" src={file} alt="" />
+
+            <textarea id="notes" name="notes" placeholder="Notes" {...register("notes")}></textarea>
             <button type="submit">Submit</button>
             <p className="form-error">{errors.name?.message}</p>
             <p className="form-error">{errors.plantStartDate?.message}</p>
