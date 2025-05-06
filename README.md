@@ -6,12 +6,15 @@ Garden Monitor is a tool designed to help gardeners of all experience levels car
 
 ### Backend
 
+Prerequisites:
+- [Python](https://www.python.org/)
+
 ```bash
 # Create a virtual environment and install dependencies
 python -m venv venv && venv\Scripts\activate && pip install requests flask-cors
 
 # Start the Backend Flask Server
-venv\Scripts\activate && python app.py
+venv\Scripts\activate && python backend\app.py
 
 # Fetch plant data (optional)
 venv\Scripts\activate && python fetch_plant_data.py
@@ -19,13 +22,13 @@ venv\Scripts\activate && python fetch_plant_data.py
 
 ### Web App
 
-```bash
-# Clean up the project
-Remove-Item -Recurse -Force node_modules, package-lock.json && npm cache clean --force
+Prerequisites:
+- [Node.js](https://nodejs.org/)
 
+```bash
 # Install dependencies
-cd client && npm install react react-dom react-router-dom react-scripts
+cd client && npm install react react-dom react-router-dom react-scripts && cd ..
 
 # Start the Frontend React App
-cd client && npm start
+cd client && npm start && cd ..
 ```
