@@ -1,3 +1,4 @@
+import os
 from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 import json
@@ -6,11 +7,17 @@ import json
 app = Flask(__name__)
 CORS(app)
 
+# Get the absolute path to the data directory
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(BASE_DIR, '../data')
+
 # API route to calculate and return plant statistics
 @app.route('/api/statistics', methods=['GET'])
 def get_statistics():
+
     # Load plant data
-    with open('../data/plants_data.json', 'r') as file:
+    plants_data_path = os.path.join(DATA_DIR, 'plants_data.json')
+    with open(plants_data_path, 'r') as file:
         plants = json.load(file)
 
     # Initialize statistics containers
