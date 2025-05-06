@@ -27,8 +27,8 @@ Prerequisites:
 
 ```bash
 # Install dependencies
-cd client && npm install react react-dom react-router-dom react-scripts && cd ..
+cd client && npm install @hookform/resolvers react react-dom react-hook-form react-router-dom react-scripts yup && cd ..
 
 # Start the Frontend React App
-cd client && npm start && cd ..
+npm --prefix client start
 ```
