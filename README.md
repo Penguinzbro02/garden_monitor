@@ -11,7 +11,7 @@ Prerequisites:
 
 ```bash
 # Create a virtual environment and install dependencies
-python -m venv venv && venv\Scripts\activate && pip install requests flask-cors
+python -m venv venv && venv\Scripts\activate && python.exe -m pip install --upgrade pip && pip install requests flask-cors
 
 # Start the Backend Flask Server
 venv\Scripts\activate && python backend\app.py
