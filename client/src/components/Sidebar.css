@@ -1,32 +1,122 @@
 .Sidebar {
   padding: 0;
-  border-bottom: 1px solid #ddd;
-  height: 100%;
-  width: 300px;
-  background-color: #8dbadf;
+  border-bottom: 1px solid #7fa6b6;
+  height: 100vh;
+  width: 270px;
+  background-color: #98bdd1;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000; /* increased for overlay */
+  box-shadow: 2px 0 8px rgba(0,0,0,0.07);
+  transition: width 0.3s cubic-bezier(.4,0,.2,1);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.Sidebar.collapsed {
+  width: 64px;
+}
+
+.SidebarHamburger {
+  /* Change these values to reposition the hamburger menu */
+  position: fixed;
+  top: 15px; /* Adjust this value for vertical position */
+  left: 15px; /* Adjust this value for horizontal position */
+  z-index: 2001;
+  width: 36px;
+  height: 36px;
+  background: #fff;
+  border: 1px solid #7fa6b6;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  padding: 0;
+}
+
+.hamburger-bar {
+  width: 25px;
+  height: 3px;
+  background: #7fa6b6;
+  margin: 2.5px 0;
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+.SidebarHeader {
+  width: 100%;
+  height: 60px;
+  background: #6d9bbd;
+  color: #222;
+  font-size: 2em;
+  font-family: 'Architects Daughter', cursive;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2px solid #5a7c8c;
+  transition: opacity 0.3s;
+}
+
+.Sidebar.collapsed .SidebarHeader {
+  opacity: 0;
 }
 
 .SidebarList {
-  height: 100%;
+  flex: 1;
   width: 100%;
   padding: 0;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 }
+
 .SidebarList .row {
   width: 100%;
   height: 50px;
-  border: 1px solid black;
+  border: 1px solid #7fa6b6;
   list-style-type: none;
-  margin: 0%;
+  margin: 0;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
   align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+  font-size: 1.2em;
+  font-family: 'Architects Daughter', cursive;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.2s, padding 0.3s;
 }
 
-.SidebarList .row:hover {
-  background-color: #6cace0;
+.Sidebar.collapsed .SidebarList .row {
+  display: none;
 }
 
+.SidebarList .row-link {
+  color: inherit;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 24px;
+}
+
+.SidebarList .row:hover,
 .SidebarList .row.active {
-  background-color: #6cace0;
+  background-color: #7fa6b6;
+}
+
+.SidebarFooter {
+  display: none;
+}
+
+.Sidebar .SidebarFooter img {
+  width: 48px;
+  height: 48px;
 }
