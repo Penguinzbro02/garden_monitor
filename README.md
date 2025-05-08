@@ -23,7 +23,7 @@ venv\Scripts\activate && python fetch_plant_data.py
 ### Web App
 
 Prerequisites:
-- [Node.js](https://nodejs.org/)
+- [Node.js v16.20.2](https://nodejs.org/en/download)
 
 ```bash
 # Install dependencies in the client directory
