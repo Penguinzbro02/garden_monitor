@@ -1,3 +1,4 @@
+import React from 'react'; // ✅ REQUIRED for JSX
 import './App.css';
 import { Sidebar } from './components/Sidebar';
 import { Routes, Route } from 'react-router-dom';
@@ -7,6 +8,7 @@ import Log from './components/pages/Log';
 import Calendar from './components/pages/Calendar';
 import Weather from './components/pages/Weather';
 import Statistics from './components/pages/Statistics';
+import SearchForPlants from './components/pages/SearchForPlants';
 
 function App() {
   return (
@@ -20,6 +22,7 @@ function App() {
           <Route path="/Calendar" element={<Calendar />} />
           <Route path="/Weather" element={<Weather />} />
           <Route path="/Statistics" element={<Statistics />} />
+          <Route path="/SearchForPlants" element={<SearchForPlants />} />
         </Routes>
       </div>
     </div>

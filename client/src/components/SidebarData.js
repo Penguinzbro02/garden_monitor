@@ -7,24 +7,20 @@ export const SidebarData = [
         link: "/"
     },
     {
-        title: "Login",
-        link: "/Login"
-    },
-    {
-        title: "Log",
+        title: "Plant Status",
         link: "/Log"
     },
     {
-        title: "Calendar",
+        title: "Planting Calendar",
         link: "/Calendar"
     },
     {
-        title: "Weather",
+        title: "Weather Tracking",
         link: "/Weather"
     },
     {
-        title: "Statistics",
-        link: "/Statistics"
+        title: "Search for Plants",
+        link: "/SearchForPlants"
     },
 ]
 
