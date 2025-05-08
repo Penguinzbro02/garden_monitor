@@ -24,10 +24,11 @@ venv\Scripts\activate && python fetch_plant_data.py
 
 Prerequisites:
 - [Node.js v16.20.2](https://nodejs.org/en/download)
+- [Node.js](https://nodejs.org)
 
 ```bash
 # Install dependencies in the client directory
-npm --prefix client install react react-dom react-router-dom react-scripts
+npm --prefix client install react react-dom react-router-dom react-scripts webpack@latest webpack-cli@latest
 
 # Start the Frontend React App in the client directory
 npm --prefix client start
