@@ -29,6 +29,9 @@ Prerequisites:
 # Install dependencies in the client directory
 npm --prefix client install react react-dom react-router-dom react-scripts webpack@latest webpack-cli@latest
 
+# Install dependencies for Google login in the client directory
+npm install react-google-login --legacy-peer-deps 
+
 # Start the Frontend React App in the client directory
 npm --prefix client start
 ```

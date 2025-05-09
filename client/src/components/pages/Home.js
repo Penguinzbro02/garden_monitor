@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import Login from "./Login";
+import Logout from "./Logout";
 
 function getCurrentTime() {
     const now = new Date();
@@ -20,12 +22,20 @@ function getCurrentTime() {
     };
 }
 
-const Home = () => {
+const Home = ({ user, onLogin, onLogout }) => {
     const [clock, setClock] = useState(getCurrentTime());
+
     useEffect(() => {
         const timer = setInterval(() => setClock(getCurrentTime()), 1000);
         return () => clearInterval(timer);
     }, []);
+
+    const openGoogleCalendar = () => {
+        if (user && user.email) {
+            const calendarUrl = `https://calendar.google.com/calendar/u/0/r?authuser=${user.email}`;
+            window.open(calendarUrl, "_blank"); // Open Google Calendar in a new tab
+        }
+    };
 
     // 👇 Wrapper to center everything relative to the screen
     const centeredWrapperStyle = {
@@ -65,6 +75,17 @@ const Home = () => {
         fontWeight: 600
     };
 
+    const userNameStyle = {
+        position: "fixed",
+        top: 20,
+        right: 150,
+        zIndex: 200,
+        fontFamily: "Architects Daughter, cursive",
+        fontSize: "1.1em",
+        color: "#222",
+        fontWeight: 600,
+    };
+
     const gridStyle = {
         display: 'flex',
         flexWrap: 'wrap',
@@ -100,13 +121,46 @@ const Home = () => {
         borderBottom: '1px solid #e0e0e0'
     };
 
+    const calendarBtnStyle = {
+        position: "fixed",
+        top: 20,
+        right: 300,
+        zIndex: 200,
+        background: "#fff",
+        color: "#222",
+        border: "1px solid #7fa6b6",
+        borderRadius: "6px",
+        padding: "8px 16px",
+        fontFamily: "Architects Daughter, cursive",
+        fontSize: "1.1em",
+        cursor: "pointer",
+        fontWeight: 600,
+    };
+
     const plantStatus = ["Water your plants", "Change your compost", "Etc"];
     const todoList = ["Tend to your pumpkins", "Change your compost", "Water plants"];
     const alerts = ["Water your plants", "Change your compost", "Etc"];
 
     return (
         <>
-            <button style={logoutBtnStyle} onClick={() => window.location.href = '/Login'}>Log Out</button>
+            <div>
+                {user && (
+                    <div style={userNameStyle}>
+                        Hello {user.givenName} {user.familyName}
+                    </div>
+                )}
+                {user ? (
+                    <>
+                        <button style={calendarBtnStyle} onClick={openGoogleCalendar}>
+                            Open Calendar
+                        </button>
+                        <Logout onLogout={onLogout} buttonStyle={logoutBtnStyle} />
+                    </>
+                ) : (
+                    <Login onLogin={onLogin} buttonStyle={logoutBtnStyle} />
+                )}
+
+            </div>
 
             <div style={centeredWrapperStyle}>
                 <div style={timeBoxStyle}>
