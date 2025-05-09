@@ -29,7 +29,7 @@ const SearchForPlants = () => {
     const [selectedPlant, setSelectedPlant] = useState(null);
     const inputRef = useRef();
 
-    
+
     // Debounced fetch for autocomplete
     const debouncedFetch = useCallback(
         debounce(async (val) => {
@@ -93,7 +93,6 @@ const SearchForPlants = () => {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minHeight: '100vh' }}>
-            <button style={logoutBtnStyle} onClick={() => window.location.href = '/Login'}>Log Out</button>
             <h2 style={{ marginTop: '48px', fontFamily: 'Architects Daughter, cursive' }}>Search for Plants</h2>
             <form onSubmit={handleSearch} style={{ display: 'flex', margin: '16px 0', position: 'relative', width: '360px' }} autoComplete="off">
                 <input

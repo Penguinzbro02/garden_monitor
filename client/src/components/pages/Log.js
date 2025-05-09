@@ -50,7 +50,6 @@ const Log = () => {
 
     return (
         <div style={{ padding: '24px' }}>
-            <button style={logoutBtnStyle} onClick={() => window.location.href = '/Login'}>Log Out</button>
             <h1>Plant Log</h1>
             <Form />
 

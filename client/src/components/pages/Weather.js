@@ -61,10 +61,6 @@ const Weather = () => {
         overflow: 'hidden',
       }}
     >
-      {/* Logout button at top right */}
-      <button style={logoutBtnStyle} onClick={() => window.location.href = '/Login'}>
-        Log Out
-      </button>
 
       {/* Centered wrapper */}
       <div style={wrapperStyle}>
