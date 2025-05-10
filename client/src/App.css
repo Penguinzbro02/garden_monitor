@@ -76,3 +76,8 @@ form button {
   max-width: 200px;
   max-height: 200px;
 }
+
+.google-login-button {
+    display: none !important;
+}
+

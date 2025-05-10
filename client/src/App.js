@@ -22,6 +22,7 @@ function App() {
   };
 
   const handleLogin = (userData) => {
+    console.log("User logged in:", userData);
     setUser(userData); // Save user data
   };
 
@@ -66,6 +67,7 @@ function App() {
         {user ? (
           <>
             <Logout onLogout={handleLogout} buttonStyle={logoutBtnStyle} />
+
           </>
         ) : (
           <Login onLogin={handleLogin} buttonStyle={logoutBtnStyle} />
@@ -74,7 +76,7 @@ function App() {
       </div>
       {user && (
         <div style={userNameStyle}>
-          Hello {user.givenName} {user.familyName}
+          Hello {user.name}
         </div>
       )}
       <div className="Container">
@@ -83,7 +85,7 @@ function App() {
           <Route path="/Login" element={<Login onLogin={handleLogin} />} />
           <Route path="/Logout" element={<Logout onLogout={handleLogout} />} />
           <Route path="/Log" element={<Log />} />
-          <Route path="/Calendar" element={<Calendar user={user} isSidebarCollapsed={isSidebarCollapsed} />} />
+          <Route path="/Calendar" element={<Calendar user={user} accessToken={user?.accessToken} isSidebarCollapsed={isSidebarCollapsed} />} />
           <Route path="/Weather" element={<Weather />} />
           <Route path="/Statistics" element={<Statistics />} />
           <Route path="/SearchForPlants" element={<SearchForPlants />} />

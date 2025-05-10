@@ -1,27 +1,16 @@
-import { GoogleLogout } from "react-google-login";
-
-const clientId = "1084199912186-1cfvqtmrc4nu2vccguvgfpphlhucn75f.apps.googleusercontent.com";
+import { googleLogout } from '@react-oauth/google';
 
 function Logout({ onLogout, buttonStyle }) {
-    const onLogoutSuccess = () => {
+    const handleLogout = () => {
+        googleLogout(); // Clears the user's session
         console.log("Logout success");
-        onLogout();
+        onLogout(); // Call the parent component's logout handler
     };
 
     return (
-        <GoogleLogout
-            clientId={clientId}
-            render={(renderProps) => (
-                <button
-                    style={buttonStyle}
-                    onClick={renderProps.onClick}
-                    disabled={renderProps.disabled}
-                >
-                    Logout
-                </button>
-            )}
-            onLogoutSuccess={onLogoutSuccess}
-        />
+        <button style={buttonStyle} onClick={handleLogout}>
+            Logout
+        </button>
     );
 }
 
