@@ -1,5 +1,4 @@
 import { useGoogleLogin } from '@react-oauth/google';
-// import { jwtDecode } from 'jwt-decode'; // Correct import for jwtDecode
 
 function Login({ onLogin, buttonStyle }) {
     const handleSuccess = async (tokenResponse) => {

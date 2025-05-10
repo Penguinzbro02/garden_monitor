@@ -31,7 +31,6 @@ npm --prefix client install react react-dom react-router-dom react-scripts webpa
 
 # Install dependencies for Google login in the client directory
 npm install @react-oauth/google --legacy-peer-deps 
-npm install jwt-decode --legacy-peer-deps 
 
 # Start the Frontend React App in the client directory
 npm --prefix client start

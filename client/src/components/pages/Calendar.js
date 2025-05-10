@@ -49,7 +49,7 @@ const Calendar = ({ user, isSidebarCollapsed, accessToken }) => {
             if (response.ok) {
                 const data = await response.json();
                 console.log("Event created:", data);
-                alert("Event created successfully! Check your Google Calendar.");
+                alert("Event created successfully");
             } else {
                 const errorData = await response.json(); // Parse the error response
                 console.error("Failed to create event:", response.statusText, errorData);
