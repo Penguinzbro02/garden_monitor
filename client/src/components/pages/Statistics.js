@@ -1,3 +1,4 @@
+import '../../styles.css';
 import React, { useEffect, useState } from 'react';
 
 function Statistics() {
@@ -27,27 +28,38 @@ function Statistics() {
       <div style={{ textAlign: 'center' }}>
         <div style={{ display: 'inline-block', textAlign: 'left' }}>
           <h1>Plant Statistics</h1>
-          <p>Total Plants: {statistics.total_plants}</p>
-          <h2>Families</h2>
-          <ul>
-            {Object.entries(statistics.families).map(([family, count]) => (
-              <li key={family}>{family}: {count}</li>
-            ))}
-          </ul>
-          <h2>Genera</h2>
-          <ul>
-            {Object.entries(statistics.genera).map(([genus, count]) => (
-              <li key={genus}>{genus}: {count}</li>
-            ))}
-          </ul>
-          <h2>Authors</h2>
-          <ul>
-            {Object.entries(statistics.authors).map(([author, count]) => (
-              <li key={author}>{author}: {count}</li>
-            ))}
-          </ul>
+          <h2>Total Plants: {statistics.total_plants}</h2>
           <p>Earliest Year: {statistics.earliest_year}</p>
           <p>Latest Year: {statistics.latest_year}</p>
+          
+          {/* Table for Families, Genera, and Authors */}
+          <h2>Statistics Overview</h2>
+          <table border="1" style={{ width: '100%', textAlign: 'left' }}>
+            <thead>
+              <tr>
+                <th>Families</th>
+                <th>Genera</th>
+                <th>Authors</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Object.keys(statistics.families).map((key, index) => (
+                <tr key={index}>
+                  <td>{key}: {statistics.families[key]}</td>
+                  <td>
+                    {Object.keys(statistics.genera)[index]
+                      ? `${Object.keys(statistics.genera)[index]}: ${statistics.genera[Object.keys(statistics.genera)[index]]}`
+                      : ''}
+                  </td>
+                  <td>
+                    {Object.keys(statistics.authors)[index]
+                      ? `${Object.keys(statistics.authors)[index]}: ${statistics.authors[Object.keys(statistics.authors)[index]]}`
+                      : ''}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
 

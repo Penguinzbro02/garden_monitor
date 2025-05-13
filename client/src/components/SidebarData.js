@@ -22,6 +22,10 @@ export const SidebarData = [
         title: "Search for Plants",
         link: "/SearchForPlants"
     },
+    {
+        title: "Statistics",
+        link: "/Statistics"
+    }
 ]
 
 export default SidebarData

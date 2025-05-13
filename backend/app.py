@@ -10,7 +10,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)                                    # allow requests from http://localhost:3000
 
-DATA_DIR   = os.path.abspath("../data")      # one place for the data folder
+DATA_DIR   = os.path.abspath("./data")      # one place for the data folder
 LOGS_FILE  = os.path.join(DATA_DIR, "logs.json")
 PLANTS_FILE= os.path.join(DATA_DIR, "plants_data.json")
 
@@ -39,39 +39,45 @@ def plants_proxy():
 
 
 # -----------------------------------------------------------------------------
-# Statistics endpoint (unchanged)
+# Statistics endpoint
 # -----------------------------------------------------------------------------
 @app.route("/api/statistics", methods=["GET"])
 def get_statistics():
     with open(PLANTS_FILE, "r") as f:
         plants = json.load(f)
 
+    # Initialize statistics
     stats = {
         "total_plants": len(plants),
         "families": {},
         "genera": {},
         "authors": {},
-        "years": [],
         "sample_plants": []
     }
+    years = []
 
+    # Aggregate data
     for plant in plants:
-        stats["families"][plant.get("family", "Unknown")]  = stats["families"].get(plant.get("family",  "Unknown"), 0) + 1
-        stats["genera"] [plant.get("genus",  "Unknown")]   = stats["genera"] .get(plant.get("genus",   "Unknown"), 0) + 1
-        stats["authors"][plant.get("author", "Unknown")]   = stats["authors"].get(plant.get("author",  "Unknown"), 0) + 1
-        if "year" in plant:
-            stats["years"].append(plant["year"])
+        family = plant.get("family", "Unknown")
+        genus = plant.get("genus", "Unknown")
+        author = plant.get("author", "Unknown")
+        year = plant.get("year")
 
-    stats["earliest_year"] = min(stats["years"]) if stats["years"] else None
-    stats["latest_year"]   = max(stats["years"]) if stats["years"] else None
-    stats.pop("years", None)
+        stats["families"][family] = stats["families"].get(family, 0) + 1
+        stats["genera"][genus] = stats["genera"].get(genus, 0) + 1
+        stats["authors"][author] = stats["authors"].get(author, 0) + 1
+        if year:
+            years.append(year)
 
+    # Add year range and sample plants
+    stats["earliest_year"] = min(years) if years else None
+    stats["latest_year"] = max(years) if years else None
     stats["sample_plants"] = [
         {"name": p.get("common_name", "Unknown"), "image_url": p.get("image_url", "")}
         for p in plants[:10]
     ]
-    return jsonify(stats)
 
+    return jsonify(stats)
 
 # -----------------------------------------------------------------------------
 # Save a new log entry
