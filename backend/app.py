@@ -1,7 +1,8 @@
 import os
+import json
+import requests
 from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
-import requests, os, json
 
 # -----------------------------------------------------------------------------
 # App setup + CORS
@@ -13,10 +14,15 @@ DATA_DIR   = os.path.abspath("../data")      # one place for the data folder
 LOGS_FILE  = os.path.join(DATA_DIR, "logs.json")
 PLANTS_FILE= os.path.join(DATA_DIR, "plants_data.json")
 
-TREFLE_API_KEY = os.getenv(
-    "TREFLE_KEY",
-    "INSERT KEY HERE"   # fallback to hard-coded key
-)
+# Load secrets from secrets.json
+SECRETS_FILE = os.path.abspath("secrets.json")
+try:
+    with open(SECRETS_FILE, "r") as f:
+        secrets = json.load(f)
+        TREFLE_API_KEY = secrets.get("TREFLE_KEY", "INSERT KEY HERE")
+except (FileNotFoundError, json.JSONDecodeError):
+    TREFLE_API_KEY = "INSERT KEY HERE"  # Fallback if secrets.json is missing or invalid
+
 
 # -----------------------------------------------------------------------------
 # NEW  ➜  CORS-safe proxy to Trefle
