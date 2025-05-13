@@ -13,6 +13,9 @@ Prerequisites:
 # Create and activate a virtual environment, then install the required dependencies:
 python -m venv venv && venv\Scripts\activate && python.exe -m pip install --upgrade pip && pip install requests flask-cors
 
+# Ignore local changes to secrets.json:
+git update-index --assume-unchanged backend/secrets.json
+
 # Start the Flask backend server:
 venv\Scripts\activate && python backend\app.py
 
