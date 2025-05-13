@@ -2,10 +2,18 @@ import os
 import requests
 import json
 
-# Configuration
-API_KEY = ""  # Replace with your actual Trefle API key
-if not API_KEY:
-    raise ValueError("API_KEY must be set. Please provide your Trefle API key.")
+# Load API key from secrets.json
+SECRETS_FILE = os.path.join("backend", "secrets.json")
+try:
+    with open(SECRETS_FILE, "r") as file:
+        secrets = json.load(file)
+        API_KEY = secrets.get("TREFLE_KEY", "")
+        if not API_KEY:
+            raise ValueError("TREFLE_KEY is missing in secrets.json.")
+except FileNotFoundError:
+    raise FileNotFoundError(f"Secrets file not found at {SECRETS_FILE}.")
+except json.JSONDecodeError:
+    raise ValueError(f"Secrets file {SECRETS_FILE} is not a valid JSON file.")
 
 BASE_URL = "https://trefle.io/api/v1"
 DATA_DIR = "data"
