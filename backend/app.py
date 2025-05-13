@@ -23,11 +23,11 @@ TREFLE_API_KEY = os.getenv(
 # -----------------------------------------------------------------------------
 @app.route('/api/plants')
 def plants_proxy():
-    q = request.args.get('q', '')
-    url = f"https://trefle.io/api/v1/plants/search?q={q}&token={TREFLE_API_KEY}"
+    query = request.args.get('q', '')
+    url = f"https://trefle.io/api/v1/plants/search?q={query}&token={TREFLE_API_KEY}"
     try:
-        r = requests.get(url, timeout=10)
-        return jsonify(r.json()), r.status_code
+        response = requests.get(url, timeout=10)
+        return jsonify(response.json()), response.status_code
     except requests.RequestException as e:
         return jsonify({"error": str(e)}), 502
 
@@ -93,19 +93,23 @@ def save_log():
 
 
 # -----------------------------------------------------------------------------
-# Serve raw files from ../data
+# Serve raw data files from ../data
 # -----------------------------------------------------------------------------
 @app.route("/data/<path:filename>")
 def data_files(filename):
     return send_from_directory(DATA_DIR, filename)
 
 
+# -----------------------------------------------------------------------------
+# Handle 404 errors
+# -----------------------------------------------------------------------------
 @app.errorhandler(404)
 def page_not_found(_):
     return "Error: Page not found", 404
 
-
+# ----------------------------------------------------------------------------- 
+# Main Entry Point
 # -----------------------------------------------------------------------------
 if __name__ == "__main__":
-    # Use 127.0.0.1:5000 by default
+    # Uses http://127.0.0.1:5000 by default
     app.run(debug=True)
