@@ -10,13 +10,13 @@ Prerequisites:
 - [Python](https://www.python.org/)
 
 ```bash
-# Create a virtual environment and install dependencies
+# Create and activate a virtual environment, then install the required dependencies:
 python -m venv venv && venv\Scripts\activate && python.exe -m pip install --upgrade pip && pip install requests flask-cors
 
-# Start the Backend Flask Server
+# Start the Flask backend server:
 venv\Scripts\activate && python backend\app.py
 
-# Fetch plant data (optional)
+# (Optional) Fetch plant data:
 venv\Scripts\activate && python fetch_plant_data.py
 ```
 
@@ -26,12 +26,12 @@ Prerequisites:
 - [Node.js v22.15.0 (LTS)](https://nodejs.org)
 
 ```bash
-# Install dependencies in the client directory
+# Install the required dependencies for the frontend to the client directory:
 npm --prefix client install react react-dom react-router-dom react-scripts webpack@latest webpack-cli@latest
 
-# Install dependencies for Google login in the client directory
-npm install @react-oauth/google --legacy-peer-deps 
+# Install Google OAuth dependencies to the client directory:
+npm --prefix client install @react-oauth/google --legacy-peer-deps 
 
-# Start the Frontend React App in the client directory
+# Start the React frontend app:
 npm --prefix client start
 ```
