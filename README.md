@@ -8,6 +8,8 @@ Garden Monitor is a tool designed to help gardeners of all experience levels car
 
 Prerequisites:
 - [Python](https://www.python.org/)
+- [Git](https://git-scm.com/)
+- [Trefle API Key](https://trefle.io/)
 
 ```bash
 # Create and activate a virtual environment, then install the required dependencies:
