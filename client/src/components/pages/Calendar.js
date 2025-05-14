@@ -63,7 +63,6 @@ const Calendar = ({ user, isSidebarCollapsed, accessToken }) => {
     const calendarBtnStyle = {
         position: "fixed",
         top: 20,
-        left: isSidebarCollapsed ? "70px" : "290px", // Adjust based on sidebar state
         zIndex: 200,
         background: "#fff",
         color: "#222",
@@ -74,7 +73,8 @@ const Calendar = ({ user, isSidebarCollapsed, accessToken }) => {
         fontSize: "1.1em",
         cursor: "pointer",
         fontWeight: 600,
-        transition: "left 0.3s ease", // Smooth transition when sidebar toggles
+        transition: "left 0.3s ease",
+        marginTop: '75px'
     };
 
 
