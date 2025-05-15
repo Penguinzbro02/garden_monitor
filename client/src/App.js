@@ -10,6 +10,7 @@ import Calendar from './components/pages/Calendar';
 import Weather from './components/pages/Weather';
 import Statistics from './components/pages/Statistics';
 import SearchForPlants from './components/pages/SearchForPlants';
+import About from './components/pages/About';
 
 function App() {
 
@@ -89,7 +90,8 @@ function App() {
                                                                isSidebarCollapsed={isSidebarCollapsed}/>}/>
                     <Route path="/Weather" element={<Weather/>}/>
                     <Route path="/Statistics" element={<Statistics/>}/>
-                    <Route path="/SearchForPlants" element={<SearchForPlants/>}/>
+                    <Route path="/SearchForPlants" element={<SearchForPlants />} />
+                    <Route path="/About" element={<About />} />
                 </Routes>
             </div>
         </div>

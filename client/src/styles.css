@@ -29,3 +29,7 @@ table th {
     /* Aligns text to the left */
     text-align: left;
 }
+
+.about-credits-list li {
+    margin-bottom: 1.2em;
+}
