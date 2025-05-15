@@ -35,7 +35,7 @@ Prerequisites:
 npm --prefix client install react react-dom react-router-dom react-scripts webpack@latest webpack-cli@latest
 
 # Install Google OAuth dependencies to the client directory:
-npm --prefix client install @react-oauth/google --legacy-peer-deps 
+npm --prefix client install @react-oauth/google --legacy-peer-deps
 
 # Start the React frontend app:
 npm --prefix client start
