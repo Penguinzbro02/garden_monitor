@@ -80,11 +80,6 @@ export const Form = ({ onAddRecord }) => {
             <input type="date" id="watering_history" name="watering_history" {...register("water")} />
             <label htmlFor="fertilizer_history">Last Fertilized:</label>
             <input type="date" id="fertilizer_history" name="fertilizer_history" {...register("fertilizer")} />
-
-            {/* upload photo from computer*/}
-            <input type="file" onChange={handleChange} />
-            <img className="image-upload" src={file} alt="" />
-
             <textarea id="notes" name="notes" placeholder="Notes" {...register("notes")}></textarea>
             <button type="submit">Submit</button>
             <p className="form-error">{errors.name?.message}</p>

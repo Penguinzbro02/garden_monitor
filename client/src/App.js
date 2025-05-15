@@ -21,6 +21,7 @@ function App() {
     setIsSidebarCollapsed(collapsed);
   };
 
+  // After successful login, the app receives an access token from Google
   const handleLogin = (userData) => {
     console.log("User logged in:", userData);
     setUser(userData); // Save user data

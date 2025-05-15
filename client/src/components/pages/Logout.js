@@ -3,9 +3,9 @@ import { googleLogout } from '@react-oauth/google';
 
 function Logout({ onLogout, buttonStyle }) {
     const handleLogout = () => {
-        googleLogout(); // Clears the user's session
+        googleLogout(); // Clears the access token and ends the user's session
         console.log("Logout success");
-        onLogout(); // Call the parent component's logout handler
+        onLogout();
     };
 
     return (

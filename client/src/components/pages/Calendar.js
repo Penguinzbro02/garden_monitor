@@ -47,7 +47,10 @@ const Calendar = ({ user, isSidebarCollapsed, accessToken }) => {
                 timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
             },
         };
+
+        // Use the access token to authenticate requests to the Google Calendar API
         try {
+            // Send a POST request to create a new event
             const response = await fetch(
                 "https://www.googleapis.com/calendar/v3/calendars/primary/events",
                 {
