@@ -1,26 +1,26 @@
 [
     {
-        "name": "Plant 1",
-        "plantStartDate": "2025-04-18T07:00:00.000Z",
+        "notes": "",
+        "fertilizer": "2025-05-14T07:00:00.000Z",
+        "water": "2025-05-14T07:00:00.000Z",
         "height": "",
-        "water": null,
-        "fertilizer": null,
-        "notes": ""
+        "plantStartDate": "2025-05-14T07:00:00.000Z",
+        "name": "Plant 3"
     },
     {
-        "name": "Plant 2",
-        "plantStartDate": "2025-04-18T07:00:00.000Z",
+        "notes": "",
+        "fertilizer": "2025-05-14T07:00:00.000Z",
+        "water": "2025-05-14T07:00:00.000Z",
         "height": "",
-        "water": null,
-        "fertilizer": null,
-        "notes": ""
+        "plantStartDate": "2025-05-14T07:00:00.000Z",
+        "name": "Plant 2"
     },
     {
-        "name": "plant3",
-        "plantStartDate": "2025-04-20T07:00:00.000Z",
+        "notes": "",
+        "fertilizer": "2025-05-13T07:00:00.000Z",
+        "water": "2025-05-13T07:00:00.000Z",
         "height": "",
-        "water": null,
-        "fertilizer": null,
-        "notes": ""
+        "plantStartDate": "2025-05-13T07:00:00.000Z",
+        "name": "Plant 1"
     }
 ]

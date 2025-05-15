@@ -87,13 +87,12 @@ def get_statistics():
     return jsonify(stats)
 
 # -----------------------------------------------------------------------------
-# Save a new log entry
+# Save a new log entry to the beginning of logs
 # -----------------------------------------------------------------------------
 @app.route("/api/save-log", methods=["POST"])
 def save_log():
     try:
-        new_log      = request.json
-        reversed_log = {k: new_log[k] for k in reversed(new_log)}
+        new_log = request.json
 
         try:
             with open(LOGS_FILE, "r") as f:
@@ -101,7 +100,7 @@ def save_log():
         except (FileNotFoundError, json.JSONDecodeError):
             logs = []
 
-        logs.append(reversed_log)
+        logs.insert(0, new_log)
 
         with open(LOGS_FILE, "w") as f:
             json.dump(logs, f, indent=4)

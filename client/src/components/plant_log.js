@@ -5,6 +5,9 @@ import * as yup from 'yup'
 
 export const Form = ({ onAddRecord }) => {
     const [file, setFile] = useState();
+    const now = new Date();
+    const today = now.toLocaleDateString('en-CA');
+
     function handleChange(e) {
         if (!e.target.files || e.target.files.length === 0) {
             setFile(null);
@@ -36,6 +39,11 @@ export const Form = ({ onAddRecord }) => {
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema),
+        defaultValues: {
+            plantStartDate: today,
+            water: today,
+            fertilizer: today,
+        },
     });
 
     // Sends data to backend API endpoint 

@@ -17,8 +17,22 @@ const logoutBtnStyle = {
     fontWeight: 600
 };
 
+const gridContainerStyle = {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(4, 1fr)',
+    gap: '16px',
+    padding: '16px',
+};
+
+const gridItemStyle = {
+    border: '1px solid #ccc',
+    borderRadius: '6px',
+    padding: '12px',
+    background: '#f9f9f9',
+    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+};
+
 const Log = () => {
-    const [columns, setColumns] = useState([]);
     const [records, setRecords] = useState([]);
 
     useEffect(() => {
@@ -31,10 +45,8 @@ const Log = () => {
 
                 if (!ignore && Array.isArray(data)) {
                     if (data.length > 0) {
-                        setColumns(Object.keys(data[0]));
                         setRecords(data);
                     } else {
-                        setColumns([]);
                         setRecords([]);
                     }
                 }
@@ -53,24 +65,18 @@ const Log = () => {
             <h1>Plant Log</h1>
             <Form onAddRecord={(newRecord) => setRecords(prev => [newRecord, ...prev])} />
 
-            <ul style={{ padding: 0, listStyle: 'none' }}>
+            <div style={gridContainerStyle}>
                 {records.slice(0, 20).map((record, i) => (
-                    <li key={i} style={{
-                        border: '1px solid #ccc',
-                        borderRadius: '6px',
-                        padding: '12px',
-                        marginBottom: '12px',
-                        background: '#f9f9f9'
-                    }}>
+                    <div key={i} style={gridItemStyle}>
                         <div><strong>Name:</strong> {record.name}</div>
                         <div><strong>Plant Start Date:</strong> {record.plantStartDate ? new Date(record.plantStartDate).toLocaleDateString() : 'N/A'}</div>
                         <div><strong>Height:</strong> {record.height || 'N/A'}</div>
                         <div><strong>Water:</strong> {record.water ? new Date(record.water).toLocaleDateString() : 'N/A'}</div>
                         <div><strong>Fertilizer:</strong> {record.fertilizer ? new Date(record.fertilizer).toLocaleDateString() : 'N/A'}</div>
                         <div><strong>Notes:</strong> {record.notes || 'N/A'}</div>
-                    </li>
+                    </div>
                 ))}
-            </ul>
+            </div>
         </div>
     );
 };
