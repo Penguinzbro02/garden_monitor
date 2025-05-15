@@ -40,3 +40,7 @@ npm --prefix client install @react-oauth/google --legacy-peer-deps
 # Start the React frontend app:
 npm --prefix client start
 ```
+
+## Screenshots
+
+[![Home Page](media/home_page.png)](media/home_page.png)
