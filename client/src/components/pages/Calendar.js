@@ -1,14 +1,28 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Calendar = ({ user, isSidebarCollapsed, accessToken }) => {
-
     const [startDate, setStartDate] = useState("");
     const [startTime, setStartTime] = useState("");
     const [endDate, setEndDate] = useState("");
     const [endTime, setEndTime] = useState("");
     const [eventName, setEventName] = useState("");
     const [eventDescription, setEventDescription] = useState("");
+
+    // Set default date and time
+    useEffect(() => {
+        const now = new Date();
+        const today = now.toLocaleDateString('en-CA');
+        setStartDate(today);
+        setEndDate(today);
+
+        // Get the current hour 
+        const hours = now.getHours().toString().padStart(2, "0");
+        setStartTime(`${hours}:00`);
+
+        // Set end time to current hour + 1 
+        const nextHour = (now.getHours() + 1).toString().padStart(2, "0");
+        setEndTime(`${nextHour}:00`);
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -22,7 +36,7 @@ const Calendar = ({ user, isSidebarCollapsed, accessToken }) => {
         const endDateTime = `${endDate}T${endTime}:00`;
 
         const event = {
-            summary: eventName,
+            summary: `[Garden Monitor] ${eventName}`,
             description: eventDescription,
             start: {
                 dateTime: startDateTime,
@@ -60,6 +74,7 @@ const Calendar = ({ user, isSidebarCollapsed, accessToken }) => {
             alert("An error occurred while creating the event.");
         }
     };
+
     const calendarBtnStyle = {
         position: "fixed",
         top: 20,
@@ -77,15 +92,12 @@ const Calendar = ({ user, isSidebarCollapsed, accessToken }) => {
         marginTop: '75px'
     };
 
-
-
     const openGoogleCalendar = () => {
         if (user && user.email) {
             const calendarUrl = `https://calendar.google.com/calendar/u/0/r?authuser=${user.email}`;
             window.open(calendarUrl, "_blank"); // Open Google Calendar in a new tab
         }
     };
-
 
     return (
         <div>
@@ -111,7 +123,6 @@ const Calendar = ({ user, isSidebarCollapsed, accessToken }) => {
                             <textarea
                                 value={eventDescription}
                                 onChange={(e) => setEventDescription(e.target.value)}
-                                required
                             />
                         </div>
 
@@ -160,7 +171,5 @@ const Calendar = ({ user, isSidebarCollapsed, accessToken }) => {
         </div>
     );
 };
-
-
 
 export default Calendar;
