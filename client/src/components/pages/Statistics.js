@@ -78,7 +78,7 @@ function Statistics() {
             </div>
 
             {/* Table for sample plants */}
-            <h2>Sample Plants</h2>
+            <h2>10 Sample Plants</h2>
             <table border="1">
                 <tbody>
                 {groupedPlants.map((row, rowIndex) => (
