@@ -81,3 +81,6 @@ form button {
     display: none !important;
 }
 
+button[type="submit"]:hover {
+    background-color: #5a9e5c;
+}

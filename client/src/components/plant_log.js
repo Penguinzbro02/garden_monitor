@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 
-export const Form = () => {
+export const Form = ({ onAddRecord }) => {
     const [file, setFile] = useState();
     function handleChange(e) {
         if (!e.target.files || e.target.files.length === 0) {
@@ -52,6 +52,9 @@ export const Form = () => {
 
             if (response.ok) {
                 console.log('Log saved successfully!');
+                if (onAddRecord) {
+                    onAddRecord(data); // trigger update in Log.js
+                }
             } else {
                 console.error('Failed to save log.');
             }

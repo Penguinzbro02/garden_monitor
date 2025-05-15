@@ -51,7 +51,7 @@ const Log = () => {
     return (
         <div style={{ padding: '24px' }}>
             <h1>Plant Log</h1>
-            <Form />
+            <Form onAddRecord={(newRecord) => setRecords(prev => [newRecord, ...prev])} />
 
             <ul style={{ padding: 0, listStyle: 'none' }}>
                 {records.slice(0, 20).map((record, i) => (
@@ -63,10 +63,10 @@ const Log = () => {
                         background: '#f9f9f9'
                     }}>
                         <div><strong>Name:</strong> {record.name}</div>
-                        <div><strong>Plant Start Date:</strong> {record.plantStartDate}</div>
+                        <div><strong>Plant Start Date:</strong> {record.plantStartDate ? new Date(record.plantStartDate).toLocaleDateString() : 'N/A'}</div>
                         <div><strong>Height:</strong> {record.height || 'N/A'}</div>
-                        <div><strong>Water:</strong> {record.water || 'N/A'}</div>
-                        <div><strong>Fertilizer:</strong> {record.fertilizer || 'N/A'}</div>
+                        <div><strong>Water:</strong> {record.water ? new Date(record.water).toLocaleDateString() : 'N/A'}</div>
+                        <div><strong>Fertilizer:</strong> {record.fertilizer ? new Date(record.fertilizer).toLocaleDateString() : 'N/A'}</div>
                         <div><strong>Notes:</strong> {record.notes || 'N/A'}</div>
                     </li>
                 ))}
