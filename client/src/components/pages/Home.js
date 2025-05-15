@@ -38,12 +38,21 @@ const Home = ({ user, onLogin, onLogout }) => {
         return () => clearInterval(timer);
     }, []);
 
+    console.log("Fetching plant logs from server...");
     useEffect(() => { //used for Plant Status, needs JSON that has plant start date, water date, and fertilizer date
-    fetch('http://127.0.0.1:5000/api/plant-log')
-        .then(res => res.json())
-        .then(data => setPlantLogs(data))
-        .catch(err => console.error("Error fetching plant logs", err));
-}, []);
+        console.log("useEffect for fetching plant logs triggered");
+        fetch('http://127.0.0.1:5000/api/plant-log')
+            .then(res => {
+                console.log("Received response from server:", res);
+                return res.json();
+            })
+            .then(data => {
+                console.log("Fetched plant logs data:", data);
+                setPlantLogs(data);
+                console.log("plantLogs state updated, new length:", data.length);
+            })
+            .catch(err => console.error("Error fetching plant logs", err));
+    }, []);
 
     useEffect(() => { //To do list info storage
     localStorage.setItem("todoList", JSON.stringify(todoList));
@@ -118,6 +127,9 @@ const Home = ({ user, onLogin, onLogout }) => {
                 <div style={gridStyle}>
                     <div style={cardStyle}>
                         <div style={cardTitleStyle}>Plant Status</div>
+                        <div style={{ marginBottom: '12px', fontWeight: 500 }}>
+                            Total Plants: {plantLogs.length}
+                        </div>
                         <ul style={{ paddingLeft: '20px', margin: '0', flex: 1 }}>
                             {plantLogs.map((plant, i) => (
                                 <li key={i} style={{ marginBottom: '16px' }}>
@@ -128,7 +140,7 @@ const Home = ({ user, onLogin, onLogout }) => {
                                 </li>
                             ))}
                         </ul>
-                    </div>
+                    </div> 
                     <div style={cardStyle}>
                         <div style={cardTitleStyle}>To Do List</div>
 
