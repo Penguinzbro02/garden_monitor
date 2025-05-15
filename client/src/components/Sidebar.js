@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, {useState} from 'react';
+import {Link, useLocation} from 'react-router-dom';
 import './Sidebar.css';
-import { SidebarData } from './SidebarData';
+import {SidebarData} from './SidebarData';
 
-export const Sidebar = ({ onSidebarToggle }) => {
+export const Sidebar = ({onSidebarToggle}) => {
     const [collapsed, setCollapsed] = useState(false);
     const [open, setOpen] = useState(false);
     const currRoute = useLocation();
@@ -28,7 +28,8 @@ export const Sidebar = ({ onSidebarToggle }) => {
                         const isActive = currRoute.pathname === val.link;
                         return (
                             <li key={key} className={`row${isActive ? ' active' : ''}`}>
-                                <Link to={val.link} className="row-link" tabIndex={collapsed ? -1 : 0} style={{ pointerEvents: collapsed ? 'none' : 'auto' }}>
+                                <Link to={val.link} className="row-link" tabIndex={collapsed ? -1 : 0}
+                                      style={{pointerEvents: collapsed ? 'none' : 'auto'}}>
                                     {val.title}
                                 </Link>
                             </li>

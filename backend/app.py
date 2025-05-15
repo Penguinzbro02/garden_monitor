@@ -1,5 +1,6 @@
-import os
 import json
+import os
+
 import requests
 from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
@@ -8,11 +9,11 @@ from flask_cors import CORS
 # App setup + CORS
 # -----------------------------------------------------------------------------
 app = Flask(__name__)
-CORS(app)                                    # allow requests from http://localhost:3000
+CORS(app)  # allow requests from http://localhost:3000
 
-DATA_DIR   = os.path.abspath("./data")      # one place for the data folder
-LOGS_FILE  = os.path.join(DATA_DIR, "logs.json")
-PLANTS_FILE= os.path.join(DATA_DIR, "plants_data.json")
+DATA_DIR = os.path.abspath("./data")  # one place for the data folder
+LOGS_FILE = os.path.join(DATA_DIR, "logs.json")
+PLANTS_FILE = os.path.join(DATA_DIR, "plants_data.json")
 
 # Load secrets from secrets.json
 SECRETS_FILE = os.path.abspath("backend/secrets.json")
@@ -26,6 +27,7 @@ except FileNotFoundError:
     raise FileNotFoundError(f"Secrets file not found at {SECRETS_FILE}.")
 except json.JSONDecodeError:
     raise ValueError(f"Secrets file {SECRETS_FILE} is not a valid JSON file.")
+
 
 # -----------------------------------------------------------------------------
 # NEW  ➜  CORS-safe proxy to Trefle
@@ -86,6 +88,7 @@ def get_statistics():
 
     return jsonify(stats)
 
+
 # -----------------------------------------------------------------------------
 # Save a new log entry to the beginning of logs
 # -----------------------------------------------------------------------------
@@ -109,7 +112,8 @@ def save_log():
     except Exception as exc:
         return jsonify({"error": str(exc)}), 500
 
-# ----------------------------------------------------------------------------- 
+
+# -----------------------------------------------------------------------------
 # API endpoint to get plant logs
 # -----------------------------------------------------------------------------
 @app.route("/api/plant-log", methods=["GET"])
@@ -122,7 +126,8 @@ def get_plant_logs():
         return jsonify([]), 200
     except Exception as exc:
         return jsonify({"error": str(exc)}), 500
-    
+
+
 # -----------------------------------------------------------------------------
 # Serve raw data files from ../data
 # -----------------------------------------------------------------------------
@@ -138,7 +143,8 @@ def data_files(filename):
 def page_not_found(_):
     return "Error: Page not found", 404
 
-# ----------------------------------------------------------------------------- 
+
+# -----------------------------------------------------------------------------
 # Main Entry Point
 # -----------------------------------------------------------------------------
 if __name__ == "__main__":

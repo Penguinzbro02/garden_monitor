@@ -32,6 +32,7 @@ def print_plants():
         print(f"  Harvest Time: {plant['harvest_time']}")
         print()
 
+
 def print_logs():
     logs = load_data('data/logs.json')
     print("Logs:")
@@ -46,6 +47,7 @@ def print_logs():
         print(f"Photo: {log['photo']}")
         print(f"Notes: {log['notes']}")
         print()
+
 
 def main():
     print_users()

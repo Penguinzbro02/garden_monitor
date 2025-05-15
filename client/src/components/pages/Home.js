@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 
 function getCurrentTime() {
     const now = new Date();
@@ -20,17 +20,17 @@ function getCurrentTime() {
     };
 }
 
-const Home = ({ user, onLogin, onLogout }) => {
+const Home = ({user, onLogin, onLogout}) => {
     const [clock, setClock] = useState(getCurrentTime());
     const [plantLogs, setPlantLogs] = useState([]);
 
     const [todoList, setTodoList] = useState(() => { //should save to-do list contents past reloads
-    const saved = localStorage.getItem("todoList");
+        const saved = localStorage.getItem("todoList");
         return saved ? JSON.parse(saved) : [];
     });
     const [newTodo, setNewTodo] = useState('');
 
-    const alerts = ["Subscribe to our Newsletter!", "More features coming soon!", 
+    const alerts = ["Subscribe to our Newsletter!", "More features coming soon!",
         "New update available! Restart to install."];
 
     useEffect(() => {
@@ -55,8 +55,8 @@ const Home = ({ user, onLogin, onLogout }) => {
     }, []);
 
     useEffect(() => { //To do list info storage
-    localStorage.setItem("todoList", JSON.stringify(todoList));
-}, [todoList]);
+        localStorage.setItem("todoList", JSON.stringify(todoList));
+    }, [todoList]);
 
 
     // Wrapper to center everything relative to the screen
@@ -120,37 +120,39 @@ const Home = ({ user, onLogin, onLogout }) => {
         <>
             <div style={centeredWrapperStyle}>
                 <div style={timeBoxStyle}>
-                    <div style={{ fontSize: '1.7em', marginBottom: '8px' }}>{clock.fullDate}</div>
-                    <div style={{ fontSize: '3.2em', fontWeight: 600, letterSpacing: '1px' }}>{clock.time}</div>
+                    <div style={{fontSize: '1.7em', marginBottom: '8px'}}>{clock.fullDate}</div>
+                    <div style={{fontSize: '3.2em', fontWeight: 600, letterSpacing: '1px'}}>{clock.time}</div>
                 </div>
 
                 <div style={gridStyle}>
                     <div style={cardStyle}>
                         <div style={cardTitleStyle}>Plant Status</div>
-                        <div style={{ marginBottom: '12px', fontWeight: 500 }}>
+                        <div style={{marginBottom: '12px', fontWeight: 500}}>
                             Total Plants: {plantLogs.length}
                         </div>
-                        <ul style={{ paddingLeft: '20px', margin: '0', flex: 1 }}>
+                        <ul style={{paddingLeft: '20px', margin: '0', flex: 1}}>
                             {plantLogs.map((plant, i) => (
-                                <li key={i} style={{ marginBottom: '16px' }}>
-                                    <strong>{plant.name}</strong><br />
-                                    {plant.water && <>Last Watered: {new Date(plant.water).toLocaleDateString()}<br /></>}
-                                    {plant.fertilizer && <>Last Fertilized: {new Date(plant.fertilizer).toLocaleDateString()}<br /></>}
+                                <li key={i} style={{marginBottom: '16px'}}>
+                                    <strong>{plant.name}</strong><br/>
+                                    {plant.water && <>Last
+                                        Watered: {new Date(plant.water).toLocaleDateString()}<br/></>}
+                                    {plant.fertilizer && <>Last
+                                        Fertilized: {new Date(plant.fertilizer).toLocaleDateString()}<br/></>}
                                     {plant.notes && <>Notes: {plant.notes}</>}
                                 </li>
                             ))}
                         </ul>
-                    </div> 
+                    </div>
                     <div style={cardStyle}>
                         <div style={cardTitleStyle}>To Do List</div>
 
-                        <ul style={{ paddingLeft: '20px', margin: '0', flex: 1, width: '100%' }}>
+                        <ul style={{paddingLeft: '20px', margin: '0', flex: 1, width: '100%'}}>
                             {todoList.map((item, i) => (
-                                <li key={i} style={{ margin: '8px 0' }}>{item}</li>
+                                <li key={i} style={{margin: '8px 0'}}>{item}</li>
                             ))}
                         </ul>
 
-                        <div style={{ display: 'flex', marginTop: 'auto', width: '100%' }}>
+                        <div style={{display: 'flex', marginTop: 'auto', width: '100%'}}>
                             <input
                                 type="text"
                                 value={newTodo}
@@ -190,8 +192,15 @@ const Home = ({ user, onLogin, onLogout }) => {
                     </div>
                     <div style={cardStyle}>
                         <div style={cardTitleStyle}>Alerts</div>
-                        <ul style={{ paddingLeft: '20px', margin: '0', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-around' }}>
-                            {alerts.map((item, i) => <li key={i} style={{ margin: '8px 0' }}>{item}</li>)}
+                        <ul style={{
+                            paddingLeft: '20px',
+                            margin: '0',
+                            flex: 1,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'space-around'
+                        }}>
+                            {alerts.map((item, i) => <li key={i} style={{margin: '8px 0'}}>{item}</li>)}
                         </ul>
                     </div>
                 </div>

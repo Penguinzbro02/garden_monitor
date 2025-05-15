@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Form } from '../plant_log';
+import React, {useEffect, useState} from 'react';
+import {Form} from '../plant_log';
 
 const logoutBtnStyle = {
     position: 'fixed',
@@ -57,22 +57,30 @@ const Log = () => {
         };
 
         fetchData();
-        return () => { ignore = true; };
+        return () => {
+            ignore = true;
+        };
     }, []);
 
     return (
-        <div style={{ padding: '24px' }}>
+        <div style={{padding: '24px'}}>
             <h1>Plant Log</h1>
-            <Form onAddRecord={(newRecord) => setRecords(prev => [newRecord, ...prev])} />
+            <Form onAddRecord={(newRecord) => setRecords(prev => [newRecord, ...prev])}/>
 
             <div style={gridContainerStyle}>
                 {records.slice(0, 20).map((record, i) => (
                     <div key={i} style={gridItemStyle}>
                         <div><strong>Name:</strong> {record.name}</div>
-                        <div><strong>Plant Start Date:</strong> {record.plantStartDate ? new Date(record.plantStartDate).toLocaleDateString() : 'N/A'}</div>
+                        <div><strong>Plant Start
+                            Date:</strong> {record.plantStartDate ? new Date(record.plantStartDate).toLocaleDateString() : 'N/A'}
+                        </div>
                         <div><strong>Height:</strong> {record.height || 'N/A'}</div>
-                        <div><strong>Water:</strong> {record.water ? new Date(record.water).toLocaleDateString() : 'N/A'}</div>
-                        <div><strong>Fertilizer:</strong> {record.fertilizer ? new Date(record.fertilizer).toLocaleDateString() : 'N/A'}</div>
+                        <div>
+                            <strong>Water:</strong> {record.water ? new Date(record.water).toLocaleDateString() : 'N/A'}
+                        </div>
+                        <div>
+                            <strong>Fertilizer:</strong> {record.fertilizer ? new Date(record.fertilizer).toLocaleDateString() : 'N/A'}
+                        </div>
                         <div><strong>Notes:</strong> {record.notes || 'N/A'}</div>
                     </div>
                 ))}

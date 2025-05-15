@@ -1,7 +1,7 @@
 import React from 'react';
-import { useGoogleLogin } from '@react-oauth/google';
+import {useGoogleLogin} from '@react-oauth/google';
 
-function Login({ onLogin, buttonStyle }) {
+function Login({onLogin, buttonStyle}) {
     const handleSuccess = async (tokenResponse) => {
         console.log("Login success:", tokenResponse);
 

@@ -7,6 +7,7 @@ Garden Monitor is a tool designed to help gardeners of all experience levels car
 ### Backend
 
 Prerequisites:
+
 - [Python](https://www.python.org/)
 - [Git](https://git-scm.com/)
 - [Trefle API Key](https://trefle.io/)
@@ -28,6 +29,7 @@ venv\Scripts\activate && python fetch_plant_data.py
 ### Web App
 
 Prerequisites:
+
 - [Node.js v22.15.0 (LTS)](https://nodejs.org)
 
 ```bash

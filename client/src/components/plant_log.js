@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup'
+import React, {useState} from "react";
+import {useForm} from "react-hook-form";
+import {yupResolver} from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 
-export const Form = ({ onAddRecord }) => {
+export const Form = ({onAddRecord}) => {
     const [file, setFile] = useState();
     const now = new Date();
     const today = now.toLocaleDateString('en-CA');
@@ -17,6 +17,7 @@ export const Form = ({ onAddRecord }) => {
         console.log(e.target.files);
         setFile(URL.createObjectURL(e.target.files[0]));
     }
+
     // set the data types of the form fields
     const schema = yup.object().shape({
         name: yup.string().required("Name is a required field"),
@@ -37,7 +38,7 @@ export const Form = ({ onAddRecord }) => {
         notes: yup.string().notRequired(),
     });
 
-    const { register, handleSubmit, formState: { errors } } = useForm({
+    const {register, handleSubmit, formState: {errors}} = useForm({
         resolver: yupResolver(schema),
         defaultValues: {
             plantStartDate: today,

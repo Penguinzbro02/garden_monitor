@@ -1,5 +1,3 @@
-import React from 'react'
-
 // Send a list of side bar objects
 export const SidebarData = [
     {

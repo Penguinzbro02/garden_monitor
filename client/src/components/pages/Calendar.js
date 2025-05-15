@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 
-const Calendar = ({ user, isSidebarCollapsed, accessToken }) => {
+const Calendar = ({user, isSidebarCollapsed, accessToken}) => {
     const [startDate, setStartDate] = useState("");
     const [startTime, setStartTime] = useState("");
     const [endDate, setEndDate] = useState("");
@@ -111,7 +111,7 @@ const Calendar = ({ user, isSidebarCollapsed, accessToken }) => {
                         Open Calendar
                     </button>
 
-                    <form onSubmit={handleSubmit} >
+                    <form onSubmit={handleSubmit}>
                         <div>
                             <label>Event Name:</label>
                             <input

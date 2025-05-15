@@ -1,6 +1,7 @@
-import os
-import requests
 import json
+import os
+
+import requests
 
 # Load API key from secrets.json
 SECRETS_FILE = os.path.join("backend", "secrets.json")
@@ -19,6 +20,7 @@ BASE_URL = "https://trefle.io/api/v1"
 DATA_DIR = "data"
 PLANTS_FILE = os.path.join(DATA_DIR, "plants_data.json")
 KINGDOMS_FILE = os.path.join(DATA_DIR, "kingdoms_data.json")
+
 
 # Fetch plant data from API and save to file
 def fetch_plant_data():
@@ -42,6 +44,7 @@ def fetch_plant_data():
     except Exception as e:
         print(f"Unexpected error: {e}")
 
+
 # Fetch kingdom data from API and save to file
 def fetch_kingdom_data():
     try:
@@ -57,6 +60,7 @@ def fetch_kingdom_data():
         print(f"Request error: {e}")
     except Exception as e:
         print(f"Unexpected error: {e}")
+
 
 # Main execution
 if __name__ == "__main__":
