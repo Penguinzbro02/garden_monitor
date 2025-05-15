@@ -22,5 +22,21 @@
         "height": "",
         "plantStartDate": "2025-05-13T07:00:00.000Z",
         "name": "Plant 1"
+    },
+    {
+        "notes": "Needs little water. Thriving.",
+        "fertilizer": "2025-05-10T07:00:00.000Z",
+        "water": "2025-05-12T07:00:00.000Z",
+        "height": "15cm",
+        "plantStartDate": "2025-04-01T07:00:00.000Z",
+        "name": "Cactus"
+    },
+    {
+        "notes": "Repotted recently.",
+        "fertilizer": "2025-05-11T07:00:00.000Z",
+        "water": "2025-05-13T07:00:00.000Z",
+        "height": "30cm",
+        "plantStartDate": "2025-03-15T07:00:00.000Z",
+        "name": "Aloe Vera"
     }
 ]
