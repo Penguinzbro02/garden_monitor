@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {Form} from '../plant_log';
+import React, { useEffect, useState } from 'react';
+import { Form } from '../plant_log';
 
 const logoutBtnStyle = {
     position: 'fixed',
@@ -40,7 +40,7 @@ const Log = () => {
 
         const fetchData = async () => {
             try {
-                const res = await fetch('http://127.0.0.1:5000/data/logs.json');
+                const res = await fetch('http://127.0.0.1:5000/data/plant_logs.json');
                 const data = await res.json();
 
                 if (!ignore && Array.isArray(data)) {
@@ -63,9 +63,9 @@ const Log = () => {
     }, []);
 
     return (
-        <div style={{padding: '24px'}}>
+        <div style={{ padding: '24px' }}>
             <h1>Plant Log</h1>
-            <Form onAddRecord={(newRecord) => setRecords(prev => [newRecord, ...prev])}/>
+            <Form onAddRecord={(newRecord) => setRecords(prev => [newRecord, ...prev])} />
 
             <div style={gridContainerStyle}>
                 {records.slice(0, 20).map((record, i) => (
