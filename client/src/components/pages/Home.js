@@ -28,6 +28,10 @@ const Home = ({ user, onLogin, onLogout }) => {
         return () => clearInterval(timer);
     }, []);
 
+    useEffect(() => { //To do list info storage
+    localStorage.setItem("todoList", JSON.stringify(todoList));
+}, [todoList]);
+
 
     // 👇 Wrapper to center everything relative to the screen
     const centeredWrapperStyle = {
@@ -87,7 +91,11 @@ const Home = ({ user, onLogin, onLogout }) => {
     };
 
     const plantStatus = ["Water your plants", "Change your compost", "Etc"];
-    const todoList = ["Tend to your pumpkins", "Change your compost", "Water plants"];
+    const [todoList, setTodoList] = useState(() => { //should save todo list contents past reloads
+    const saved = localStorage.getItem("todoList");
+    return saved ? JSON.parse(saved) : [];
+});
+    const [newTodo, setNewTodo] = useState('');
     const alerts = ["Water your plants", "Change your compost", "Etc"];
 
     return (
@@ -107,9 +115,50 @@ const Home = ({ user, onLogin, onLogout }) => {
                     </div>
                     <div style={cardStyle}>
                         <div style={cardTitleStyle}>To Do List</div>
-                        <ul style={{ paddingLeft: '20px', margin: '0', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-around' }}>
-                            {todoList.map((item, i) => <li key={i} style={{ margin: '8px 0' }}>{item}</li>)}
+
+                        <ul style={{ paddingLeft: '20px', margin: '0', flex: 1, width: '100%' }}>
+                            {todoList.map((item, i) => (
+                                <li key={i} style={{ margin: '8px 0' }}>{item}</li>
+                            ))}
                         </ul>
+
+                        <div style={{ display: 'flex', marginTop: 'auto', width: '100%' }}>
+                            <input
+                                type="text"
+                                value={newTodo}
+                                onChange={(e) => setNewTodo(e.target.value)}
+                                placeholder="Add new task"
+                                style={{
+                                    flex: 1,
+                                    padding: '8px',
+                                    fontSize: '1em',
+                                    border: '1px solid #ccc',
+                                    borderRadius: '4px',
+                                    marginRight: '8px',
+                                    fontFamily: 'inherit'
+                                }}
+                            />
+                            <button
+                                onClick={() => {
+                                    if (newTodo.trim()) {
+                                        setTodoList([...todoList, newTodo.trim()]);
+                                        setNewTodo('');
+                                    }
+                                }}
+                                style={{
+                                    padding: '8px 16px',
+                                    fontSize: '1em',
+                                    border: 'none',
+                                    borderRadius: '4px',
+                                    backgroundColor: '#4CAF50',
+                                    color: '#fff',
+                                    cursor: 'pointer',
+                                    fontFamily: 'inherit'
+                                }}
+                            >
+                                Add
+                            </button>
+                        </div>
                     </div>
                     <div style={cardStyle}>
                         <div style={cardTitleStyle}>Alerts</div>
