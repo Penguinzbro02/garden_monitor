@@ -1,4 +1,4 @@
-import React from 'react'; // ✅ REQUIRED for JSX
+import React from 'react'; // REQUIRED for JSX
 import { useEffect, useState } from 'react';
 import './App.css';
 import { Sidebar } from './components/Sidebar';

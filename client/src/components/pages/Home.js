@@ -22,14 +22,44 @@ function getCurrentTime() {
 
 const Home = ({ user, onLogin, onLogout }) => {
     const [clock, setClock] = useState(getCurrentTime());
+    const [plantLogs, setPlantLogs] = useState([]);
+
+    const [todoList, setTodoList] = useState(() => { //should save to-do list contents past reloads
+    const saved = localStorage.getItem("todoList");
+        return saved ? JSON.parse(saved) : [];
+    });
+    const [newTodo, setNewTodo] = useState('');
+
+    const alerts = ["Subscribe to our Newsletter!", "More features coming soon!", 
+        "New update available! Restart to install."];
 
     useEffect(() => {
         const timer = setInterval(() => setClock(getCurrentTime()), 1000);
         return () => clearInterval(timer);
     }, []);
 
+    console.log("Fetching plant logs from server...");
+    useEffect(() => { //used for Plant Status, needs JSON that has plant start date, water date, and fertilizer date
+        console.log("useEffect for fetching plant logs triggered");
+        fetch('http://127.0.0.1:5000/api/plant-log')
+            .then(res => {
+                console.log("Received response from server:", res);
+                return res.json();
+            })
+            .then(data => {
+                console.log("Fetched plant logs data:", data);
+                setPlantLogs(data);
+                console.log("plantLogs state updated, new length:", data.length);
+            })
+            .catch(err => console.error("Error fetching plant logs", err));
+    }, []);
 
-    // 👇 Wrapper to center everything relative to the screen
+    useEffect(() => { //To do list info storage
+    localStorage.setItem("todoList", JSON.stringify(todoList));
+}, [todoList]);
+
+
+    // Wrapper to center everything relative to the screen
     const centeredWrapperStyle = {
         position: 'fixed',
         top: '50%',
@@ -47,8 +77,8 @@ const Home = ({ user, onLogin, onLogout }) => {
         color: '#222',
         fontFamily: 'Architects Daughter, cursive',
         userSelect: 'none',
-        marginBottom: '50px', // 👈 adds space between time and cards
-        transform: 'translateY(-300px)', // 👈 moves time box upward visually
+        marginBottom: '50px', // adds space between time and cards
+        transform: 'translateY(-300px)', // moves time box upward visually
     };
 
     const gridStyle = {
@@ -86,10 +116,6 @@ const Home = ({ user, onLogin, onLogout }) => {
         borderBottom: '1px solid #e0e0e0'
     };
 
-    const plantStatus = ["Water your plants", "Change your compost", "Etc"];
-    const todoList = ["Tend to your pumpkins", "Change your compost", "Water plants"];
-    const alerts = ["Water your plants", "Change your compost", "Etc"];
-
     return (
         <>
             <div style={centeredWrapperStyle}>
@@ -101,15 +127,66 @@ const Home = ({ user, onLogin, onLogout }) => {
                 <div style={gridStyle}>
                     <div style={cardStyle}>
                         <div style={cardTitleStyle}>Plant Status</div>
-                        <ul style={{ paddingLeft: '20px', margin: '0', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-around' }}>
-                            {plantStatus.map((item, i) => <li key={i} style={{ margin: '8px 0' }}>{item}</li>)}
+                        <div style={{ marginBottom: '12px', fontWeight: 500 }}>
+                            Total Plants: {plantLogs.length}
+                        </div>
+                        <ul style={{ paddingLeft: '20px', margin: '0', flex: 1 }}>
+                            {plantLogs.map((plant, i) => (
+                                <li key={i} style={{ marginBottom: '16px' }}>
+                                    <strong>{plant.name}</strong><br />
+                                    {plant.water && <>Last Watered: {new Date(plant.water).toLocaleDateString()}<br /></>}
+                                    {plant.fertilizer && <>Last Fertilized: {new Date(plant.fertilizer).toLocaleDateString()}<br /></>}
+                                    {plant.notes && <>Notes: {plant.notes}</>}
+                                </li>
+                            ))}
                         </ul>
-                    </div>
+                    </div> 
                     <div style={cardStyle}>
                         <div style={cardTitleStyle}>To Do List</div>
-                        <ul style={{ paddingLeft: '20px', margin: '0', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-around' }}>
-                            {todoList.map((item, i) => <li key={i} style={{ margin: '8px 0' }}>{item}</li>)}
+
+                        <ul style={{ paddingLeft: '20px', margin: '0', flex: 1, width: '100%' }}>
+                            {todoList.map((item, i) => (
+                                <li key={i} style={{ margin: '8px 0' }}>{item}</li>
+                            ))}
                         </ul>
+
+                        <div style={{ display: 'flex', marginTop: 'auto', width: '100%' }}>
+                            <input
+                                type="text"
+                                value={newTodo}
+                                onChange={(e) => setNewTodo(e.target.value)}
+                                placeholder="Add new task"
+                                style={{
+                                    flex: 1,
+                                    padding: '8px',
+                                    fontSize: '1em',
+                                    border: '1px solid #ccc',
+                                    borderRadius: '4px',
+                                    marginRight: '8px',
+                                    fontFamily: 'inherit'
+                                }}
+                            />
+                            <button
+                                onClick={() => {
+                                    if (newTodo.trim()) {
+                                        setTodoList([...todoList, newTodo.trim()]);
+                                        setNewTodo('');
+                                    }
+                                }}
+                                style={{
+                                    padding: '8px 16px',
+                                    fontSize: '1em',
+                                    border: 'none',
+                                    borderRadius: '4px',
+                                    backgroundColor: '#4CAF50',
+                                    color: '#fff',
+                                    cursor: 'pointer',
+                                    fontFamily: 'inherit'
+                                }}
+                            >
+                                Add
+                            </button>
+                        </div>
                     </div>
                     <div style={cardStyle}>
                         <div style={cardTitleStyle}>Alerts</div>

@@ -110,7 +110,20 @@ def save_log():
     except Exception as exc:
         return jsonify({"error": str(exc)}), 500
 
-
+# ----------------------------------------------------------------------------- 
+# API endpoint to get plant logs
+# -----------------------------------------------------------------------------
+@app.route("/api/plant-log", methods=["GET"])
+def get_plant_logs():
+    try:
+        with open(LOGS_FILE, "r") as f:
+            logs = json.load(f)
+        return jsonify(logs), 200
+    except (FileNotFoundError, json.JSONDecodeError):
+        return jsonify([]), 200
+    except Exception as exc:
+        return jsonify({"error": str(exc)}), 500
+    
 # -----------------------------------------------------------------------------
 # Serve raw data files from ../data
 # -----------------------------------------------------------------------------
