@@ -24,10 +24,9 @@ function Statistics() {
 
     return (
         <div>
-            {/* Centered content */}
-            <div style={{textAlign: 'center'}}>
+            <div>
                 <div style={{display: 'inline-block', textAlign: 'left'}}>
-                    <h1>Plant Statistics</h1>
+                    <h1 className="plant-stats-header">Plant Statistics</h1>
                     <h2>Total Plants: {statistics.total_plants}</h2>
                     <p>Earliest Year: {statistics.earliest_year}</p>
                     <p>Latest Year: {statistics.latest_year}</p>
