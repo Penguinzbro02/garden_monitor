@@ -16,14 +16,21 @@ Prerequisites:
 # Create and activate a virtual environment, then install the required dependencies:
 python -m venv venv && venv\Scripts\activate && python.exe -m pip install --upgrade pip && pip install requests flask-cors
 
-# Ignore local changes to secrets.json:
-git update-index --assume-unchanged backend/secrets.json
-
 # Start the Flask backend server:
 venv\Scripts\activate && python backend\app.py
 
 # (Optional) Fetch plant data:
 venv\Scripts\activate && python fetch_plant_data.py
+
+# MacOS/Linux:
+# Create and activate a virtual environment, then install dependencies:
+python3 -m venv venv && source venv/bin/activate && python3 -m pip install --upgrade pip && pip install requests flask-cors
+
+# Start the Flask backend server:
+source venv/bin/activate && python backend/app.py
+
+# (Optional) Fetch plant data:
+source venv/bin/activate && python fetch_plant_data.py
 ```
 
 ### Web App
