@@ -28,13 +28,17 @@ except (FileNotFoundError, json.JSONDecodeError):
 # NEW  ➜  CORS-safe proxy to Trefle
 # -----------------------------------------------------------------------------
 @app.route('/api/plants')
-def plants_proxy():
+def proxy_trefle():
     query = request.args.get('q', '')
-    url = f"https://trefle.io/api/v1/plants/search?q={query}&token={TREFLE_API_KEY}"
+    url = f"https://trefle.io/api/v1/plants?q={query}&token={TREFLE_API_KEY}"
+    print(f"[DEBUG] Calling: {url}")
+
     try:
         response = requests.get(url, timeout=10)
-        return jsonify(response.json()), response.status_code
+        response.raise_for_status()
+        return jsonify(response.json())
     except requests.RequestException as e:
+        print(f"[ERROR] Trefle request failed: {e}")
         return jsonify({"error": str(e)}), 502
 
 

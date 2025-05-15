@@ -1,3 +1,4 @@
+import React from 'react';
 import { useGoogleLogin } from '@react-oauth/google';
 
 function Login({ onLogin, buttonStyle }) {
