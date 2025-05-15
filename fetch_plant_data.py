@@ -26,7 +26,7 @@ KINGDOMS_FILE = os.path.join(DATA_DIR, "kingdoms_data.json")
 def fetch_plant_data():
     try:
         plants = []
-        for page in range(1, 6):  # Fetch first 5 pages
+        for page in range(1, 26):  # Fetch first 25 pages
             print(f"Fetching plants, page {page}...")
             response = requests.get(f"{BASE_URL}/plants", params={"token": API_KEY, "page": page})
             response.raise_for_status()
