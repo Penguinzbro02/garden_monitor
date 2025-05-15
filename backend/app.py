@@ -15,26 +15,33 @@ LOGS_FILE  = os.path.join(DATA_DIR, "logs.json")
 PLANTS_FILE= os.path.join(DATA_DIR, "plants_data.json")
 
 # Load secrets from secrets.json
-SECRETS_FILE = os.path.abspath("secrets.json")
+SECRETS_FILE = os.path.abspath("backend/secrets.json")
 try:
     with open(SECRETS_FILE, "r") as f:
         secrets = json.load(f)
-        TREFLE_API_KEY = secrets.get("TREFLE_KEY", "INSERT KEY HERE")
-except (FileNotFoundError, json.JSONDecodeError):
-    TREFLE_API_KEY = "INSERT KEY HERE"  # Fallback if secrets.json is missing or invalid
-
+        TREFLE_API_KEY = secrets.get("TREFLE_KEY")
+        if not TREFLE_API_KEY:
+            raise ValueError("TREFLE_KEY is missing")
+except FileNotFoundError:
+    raise FileNotFoundError(f"Secrets file not found at {SECRETS_FILE}.")
+except json.JSONDecodeError:
+    raise ValueError(f"Secrets file {SECRETS_FILE} is not a valid JSON file.")
 
 # -----------------------------------------------------------------------------
 # NEW  ➜  CORS-safe proxy to Trefle
 # -----------------------------------------------------------------------------
 @app.route('/api/plants')
-def plants_proxy():
+def proxy_trefle():
     query = request.args.get('q', '')
-    url = f"https://trefle.io/api/v1/plants/search?q={query}&token={TREFLE_API_KEY}"
+    url = f"https://trefle.io/api/v1/plants?q={query}&token={TREFLE_API_KEY}"
+    print(f"[DEBUG] Calling: {url}")
+
     try:
         response = requests.get(url, timeout=10)
-        return jsonify(response.json()), response.status_code
+        response.raise_for_status()
+        return jsonify(response.json())
     except requests.RequestException as e:
+        print(f"[ERROR] Trefle request failed: {e}")
         return jsonify({"error": str(e)}), 502
 
 

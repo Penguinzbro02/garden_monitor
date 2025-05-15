@@ -1,3 +1,4 @@
+import React from 'react';
 import { googleLogout } from '@react-oauth/google';
 
 function Logout({ onLogout, buttonStyle }) {
