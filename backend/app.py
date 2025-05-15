@@ -12,8 +12,9 @@ app = Flask(__name__)
 CORS(app)  # allow requests from http://localhost:3000
 
 DATA_DIR = os.path.abspath("./data")  # one place for the data folder
-LOGS_FILE = os.path.join(DATA_DIR, "logs.json")
+PLANT_LOGS_FILE = os.path.join(DATA_DIR, "plant_logs.json")  # renamed from logs.json
 PLANTS_FILE = os.path.join(DATA_DIR, "plants_data.json")
+ADDITIONAL_PLANTS_FILE = os.path.join(DATA_DIR, "additional_plants.json")
 
 # Load secrets from secrets.json
 SECRETS_FILE = os.path.abspath("backend/secrets.json")
@@ -90,7 +91,7 @@ def get_statistics():
 
 
 # -----------------------------------------------------------------------------
-# Save a new log entry to the beginning of logs
+# Save a new plant log entry to the beginning of plant_logs
 # -----------------------------------------------------------------------------
 @app.route("/api/save-log", methods=["POST"])
 def save_log():
@@ -98,15 +99,15 @@ def save_log():
         new_log = request.json
 
         try:
-            with open(LOGS_FILE, "r") as f:
-                logs = json.load(f)
+            with open(PLANT_LOGS_FILE, "r") as f:
+                plant_logs = json.load(f)
         except (FileNotFoundError, json.JSONDecodeError):
-            logs = []
+            plant_logs = []
 
-        logs.insert(0, new_log)
+        plant_logs.insert(0, new_log)
 
-        with open(LOGS_FILE, "w") as f:
-            json.dump(logs, f, indent=4)
+        with open(PLANT_LOGS_FILE, "w") as f:
+            json.dump(plant_logs, f, indent=4)
 
         return jsonify({"message": "Log saved successfully!"}), 200
     except Exception as exc:
@@ -119,9 +120,9 @@ def save_log():
 @app.route("/api/plant-log", methods=["GET"])
 def get_plant_logs():
     try:
-        with open(LOGS_FILE, "r") as f:
-            logs = json.load(f)
-        return jsonify(logs), 200
+        with open(PLANT_LOGS_FILE, "r") as f:
+            plant_logs = json.load(f)
+        return jsonify(plant_logs), 200
     except (FileNotFoundError, json.JSONDecodeError):
         return jsonify([]), 200
     except Exception as exc:
