@@ -21,6 +21,17 @@ function Statistics() {
     for (let i = 0; i < statistics.sample_plants.length; i += 5) {
         groupedPlants.push(statistics.sample_plants.slice(i, i + 5));
     }
+    
+    // Sort families, genera, and authors by count (descending)
+    const sortedFamilies = Object.entries(statistics.families)
+        .sort((a, b) => b[1] - a[1]);
+    const sortedGenera = Object.entries(statistics.genera)
+        .sort((a, b) => b[1] - a[1]);
+    const sortedAuthors = Object.entries(statistics.authors)
+        .sort((a, b) => b[1] - a[1]);
+
+    // Find the max length for table rows
+    const maxRows = Math.max(sortedFamilies.length, sortedGenera.length, sortedAuthors.length);
 
     return (
         <div>
@@ -42,17 +53,21 @@ function Statistics() {
                         </tr>
                         </thead>
                         <tbody>
-                        {Object.keys(statistics.families).map((key, index) => (
+                        {Array.from({ length: maxRows }).map((_, index) => (
                             <tr key={index}>
-                                <td>{key}: {statistics.families[key]}</td>
                                 <td>
-                                    {Object.keys(statistics.genera)[index]
-                                        ? `${Object.keys(statistics.genera)[index]}: ${statistics.genera[Object.keys(statistics.genera)[index]]}`
+                                    {sortedFamilies[index]
+                                        ? `${sortedFamilies[index][0]}: ${sortedFamilies[index][1]}`
                                         : ''}
                                 </td>
                                 <td>
-                                    {Object.keys(statistics.authors)[index]
-                                        ? `${Object.keys(statistics.authors)[index]}: ${statistics.authors[Object.keys(statistics.authors)[index]]}`
+                                    {sortedGenera[index]
+                                        ? `${sortedGenera[index][0]}: ${sortedGenera[index][1]}`
+                                        : ''}
+                                </td>
+                                <td>
+                                    {sortedAuthors[index]
+                                        ? `${sortedAuthors[index][0]}: ${sortedAuthors[index][1]}`
                                         : ''}
                                 </td>
                             </tr>
