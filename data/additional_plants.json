@@ -1,0 +1,212 @@
+[
+  {
+    "plant_id": 1,
+    "plant_name": "Tomato",
+    "plant_type": "Vegetable",
+    "ideal_temperature": { "min": 15, "max": 30 },
+    "growth_stages": ["Germination", "Seedling", "Vegetative", "Flowering", "Mature"],
+    "planting_season": "Spring",
+    "harvest_time": "60-85 days",
+    "description": "Tomatoes are a popular vegetable known for their juicy, red fruits."
+  },
+  {
+    "plant_id": 2,
+    "plant_name": "Carrot",
+    "plant_type": "Root",
+    "ideal_temperature": { "min": 10, "max": 25 },
+    "growth_stages": ["Germination", "Seedling", "Vegetative", "Mature"],
+    "planting_season": "Spring",
+    "harvest_time": "70-80 days",
+    "description": "Carrots are root vegetables that are typically orange in color and rich in vitamins."
+  },
+  {
+    "plant_id": 3,
+    "plant_name": "Rose",
+    "plant_type": "Flower",
+    "ideal_temperature": { "min": 18, "max": 28 },
+    "growth_stages": ["Germination", "Seedling", "Vegetative", "Flowering", "Mature"],
+    "planting_season": "Spring",
+    "harvest_time": "90-120 days",
+    "description": "Roses are flowering plants known for their beautiful and fragrant blooms."
+  },
+  {
+    "plant_id": 4,
+    "plant_name": "Lettuce",
+    "plant_type": "Leafy Green",
+    "ideal_temperature": { "min": 10, "max": 20 },
+    "growth_stages": ["Germination", "Seedling", "Vegetative", "Mature"],
+    "planting_season": "Spring",
+    "harvest_time": "30-60 days",
+    "description": "Lettuce is a leafy green vegetable commonly used in salads."
+  },
+  {
+    "plant_id": 5,
+    "plant_name": "Basil",
+    "plant_type": "Herb",
+    "ideal_temperature": { "min": 18, "max": 30 },
+    "growth_stages": ["Germination", "Seedling", "Vegetative", "Mature"],
+    "planting_season": "Spring",
+    "harvest_time": "60-90 days",
+    "description": "Basil is a fragrant herb often used in cooking, especially in Italian dishes."
+  },
+  {
+    "plant_id": 6,
+    "plant_name": "Cucumber",
+    "plant_type": "Vegetable",
+    "ideal_temperature": { "min": 18, "max": 30 },
+    "growth_stages": ["Germination", "Seedling", "Vegetative", "Flowering", "Mature"],
+    "planting_season": "Spring",
+    "harvest_time": "50-70 days",
+    "description": "Cucumbers are refreshing vegetables commonly used in salads and pickles."
+  },
+  {
+    "plant_id": 7,
+    "plant_name": "Sunflower",
+    "plant_type": "Flower",
+    "ideal_temperature": { "min": 18, "max": 30 },
+    "growth_stages": ["Germination", "Seedling", "Vegetative", "Flowering", "Mature"],
+    "planting_season": "Spring",
+    "harvest_time": "70-100 days",
+    "description": "Sunflowers are tall plants known for their large, bright yellow flowers."
+  },
+  {
+    "plant_id": 8,
+    "plant_name": "Spinach",
+    "plant_type": "Leafy Green",
+    "ideal_temperature": { "min": 10, "max": 22 },
+    "growth_stages": ["Germination", "Seedling", "Vegetative", "Mature"],
+    "planting_season": "Spring",
+    "harvest_time": "35-50 days",
+    "description": "Spinach is a nutritious leafy green vegetable rich in iron and vitamins."
+  },
+  {
+    "plant_id": 9,
+    "plant_name": "Strawberry",
+    "plant_type": "Fruit",
+    "ideal_temperature": { "min": 15, "max": 25 },
+    "growth_stages": ["Germination", "Seedling", "Vegetative", "Flowering", "Mature"],
+    "planting_season": "Spring",
+    "harvest_time": "90-120 days",
+    "description": "Strawberries are sweet, red fruits enjoyed fresh or in desserts."
+  },
+  {
+    "plant_id": 10,
+    "plant_name": "Mint",
+    "plant_type": "Herb",
+    "ideal_temperature": { "min": 13, "max": 24 },
+    "growth_stages": ["Germination", "Seedling", "Vegetative", "Mature"],
+    "planting_season": "Spring",
+    "harvest_time": "60-90 days",
+    "description": "Mint is a fast-growing herb with a refreshing aroma and flavor."
+  },
+  {
+    "plant_id": 11,
+    "plant_name": "Pea",
+    "plant_type": "Legume",
+    "ideal_temperature": { "min": 10, "max": 24 },
+    "growth_stages": ["Germination", "Seedling", "Vegetative", "Flowering", "Mature"],
+    "planting_season": "Spring",
+    "harvest_time": "60-70 days",
+    "description": "Peas are cool-season legumes grown for their edible seeds."
+  },
+  {
+    "plant_id": 12,
+    "plant_name": "Zucchini",
+    "plant_type": "Vegetable",
+    "ideal_temperature": { "min": 18, "max": 30 },
+    "growth_stages": ["Germination", "Seedling", "Vegetative", "Flowering", "Mature"],
+    "planting_season": "Spring",
+    "harvest_time": "45-60 days",
+    "description": "Zucchini is a summer squash with tender, edible skin."
+  },
+  {
+    "plant_id": 13,
+    "plant_name": "Daisy",
+    "plant_type": "Flower",
+    "ideal_temperature": { "min": 15, "max": 25 },
+    "growth_stages": ["Germination", "Seedling", "Vegetative", "Flowering", "Mature"],
+    "planting_season": "Spring",
+    "harvest_time": "60-90 days",
+    "description": "Daisies are cheerful flowers with white petals and yellow centers."
+  },
+  {
+    "plant_id": 14,
+    "plant_name": "Pumpkin",
+    "plant_type": "Vegetable",
+    "ideal_temperature": { "min": 18, "max": 30 },
+    "growth_stages": ["Germination", "Seedling", "Vegetative", "Flowering", "Mature"],
+    "planting_season": "Spring",
+    "harvest_time": "90-120 days",
+    "description": "Pumpkins are large, orange fruits often used for pies and decorations."
+  },
+  {
+    "plant_id": 15,
+    "plant_name": "Lavender",
+    "plant_type": "Herb",
+    "ideal_temperature": { "min": 15, "max": 30 },
+    "growth_stages": ["Germination", "Seedling", "Vegetative", "Flowering", "Mature"],
+    "planting_season": "Spring",
+    "harvest_time": "90-120 days",
+    "description": "Lavender is a fragrant herb known for its purple flowers and calming scent."
+  },
+  {
+    "plant_id": 16,
+    "plant_name": "Onion",
+    "plant_type": "Bulb",
+    "ideal_temperature": { "min": 13, "max": 25 },
+    "growth_stages": ["Germination", "Seedling", "Vegetative", "Mature"],
+    "planting_season": "Spring",
+    "harvest_time": "90-120 days",
+    "description": "Onions are bulb vegetables used worldwide for their flavor."
+  },
+  {
+    "plant_id": 17,
+    "plant_name": "Petunia",
+    "plant_type": "Flower",
+    "ideal_temperature": { "min": 16, "max": 26 },
+    "growth_stages": ["Germination", "Seedling", "Vegetative", "Flowering", "Mature"],
+    "planting_season": "Spring",
+    "harvest_time": "60-90 days",
+    "description": "Petunias are popular garden flowers with vibrant, colorful blooms."
+  },
+  {
+    "plant_id": 18,
+    "plant_name": "Radish",
+    "plant_type": "Root",
+    "ideal_temperature": { "min": 10, "max": 20 },
+    "growth_stages": ["Germination", "Seedling", "Vegetative", "Mature"],
+    "planting_season": "Spring",
+    "harvest_time": "25-35 days",
+    "description": "Radishes are fast-growing root vegetables with a crisp texture."
+  },
+  {
+    "plant_id": 19,
+    "plant_name": "Marigold",
+    "plant_type": "Flower",
+    "ideal_temperature": { "min": 15, "max": 25 },
+    "growth_stages": ["Germination", "Seedling", "Vegetative", "Flowering", "Mature"],
+    "planting_season": "Spring",
+    "harvest_time": "50-60 days",
+    "description": "Marigolds are bright, hardy flowers often used to deter pests."
+  },
+  {
+    "plant_id": 20,
+    "plant_name": "Bell Pepper",
+    "plant_type": "Vegetable",
+    "ideal_temperature": { "min": 18, "max": 30 },
+    "growth_stages": ["Germination", "Seedling", "Vegetative", "Flowering", "Mature"],
+    "planting_season": "Spring",
+    "harvest_time": "60-90 days",
+    "description": "Bell peppers are colorful vegetables with a sweet, mild flavor."
+  },
+  {
+    "plant_id": 21,
+    "plant_name": "Apple",
+    "plant_type": "Fruit",
+    "ideal_temperature": { "min": 16, "max": 24 },
+    "growth_stages": ["Dormant", "Bud Break", "Flowering", "Fruit Set", "Mature"],
+    "planting_season": "Spring",
+    "harvest_time": "100-200 days",
+    "description": "Apples are popular fruit trees producing crisp, sweet or tart fruits enjoyed fresh or in cooking."
+  }
+]
