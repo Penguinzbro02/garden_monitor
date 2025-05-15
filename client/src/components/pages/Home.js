@@ -22,18 +22,35 @@ function getCurrentTime() {
 
 const Home = ({ user, onLogin, onLogout }) => {
     const [clock, setClock] = useState(getCurrentTime());
+    const [plantLogs, setPlantLogs] = useState([]);
+
+    const [todoList, setTodoList] = useState(() => { //should save to-do list contents past reloads
+    const saved = localStorage.getItem("todoList");
+        return saved ? JSON.parse(saved) : [];
+    });
+    const [newTodo, setNewTodo] = useState('');
+
+    const alerts = ["Subscribe to our Newsletter!", "More features coming soon!", 
+        "New update available! Restart to install."];
 
     useEffect(() => {
         const timer = setInterval(() => setClock(getCurrentTime()), 1000);
         return () => clearInterval(timer);
     }, []);
 
+    useEffect(() => { //used for Plant Status, needs JSON that has plant start date, water date, and fertilizer date
+    fetch('http://127.0.0.1:5000/api/plant-log')
+        .then(res => res.json())
+        .then(data => setPlantLogs(data))
+        .catch(err => console.error("Error fetching plant logs", err));
+}, []);
+
     useEffect(() => { //To do list info storage
     localStorage.setItem("todoList", JSON.stringify(todoList));
 }, [todoList]);
 
 
-    // 👇 Wrapper to center everything relative to the screen
+    // Wrapper to center everything relative to the screen
     const centeredWrapperStyle = {
         position: 'fixed',
         top: '50%',
@@ -51,8 +68,8 @@ const Home = ({ user, onLogin, onLogout }) => {
         color: '#222',
         fontFamily: 'Architects Daughter, cursive',
         userSelect: 'none',
-        marginBottom: '50px', // 👈 adds space between time and cards
-        transform: 'translateY(-300px)', // 👈 moves time box upward visually
+        marginBottom: '50px', // adds space between time and cards
+        transform: 'translateY(-300px)', // moves time box upward visually
     };
 
     const gridStyle = {
@@ -90,14 +107,6 @@ const Home = ({ user, onLogin, onLogout }) => {
         borderBottom: '1px solid #e0e0e0'
     };
 
-    const plantStatus = ["Water your plants", "Change your compost", "Etc"];
-    const [todoList, setTodoList] = useState(() => { //should save todo list contents past reloads
-    const saved = localStorage.getItem("todoList");
-    return saved ? JSON.parse(saved) : [];
-});
-    const [newTodo, setNewTodo] = useState('');
-    const alerts = ["Water your plants", "Change your compost", "Etc"];
-
     return (
         <>
             <div style={centeredWrapperStyle}>
@@ -109,8 +118,15 @@ const Home = ({ user, onLogin, onLogout }) => {
                 <div style={gridStyle}>
                     <div style={cardStyle}>
                         <div style={cardTitleStyle}>Plant Status</div>
-                        <ul style={{ paddingLeft: '20px', margin: '0', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-around' }}>
-                            {plantStatus.map((item, i) => <li key={i} style={{ margin: '8px 0' }}>{item}</li>)}
+                        <ul style={{ paddingLeft: '20px', margin: '0', flex: 1 }}>
+                            {plantLogs.map((plant, i) => (
+                                <li key={i} style={{ marginBottom: '16px' }}>
+                                    <strong>{plant.name}</strong><br />
+                                    {plant.water && <>Last Watered: {new Date(plant.water).toLocaleDateString()}<br /></>}
+                                    {plant.fertilizer && <>Last Fertilized: {new Date(plant.fertilizer).toLocaleDateString()}<br /></>}
+                                    {plant.notes && <>Notes: {plant.notes}</>}
+                                </li>
+                            ))}
                         </ul>
                     </div>
                     <div style={cardStyle}>
