@@ -40,6 +40,9 @@ Prerequisites:
 - [Node.js v22.15.0 (LTS)](https://nodejs.org)
 
 ```bash
+# Install npm
+brew install node
+
 # Install the required dependencies for the frontend to the client directory:
 npm --prefix client install react react-dom react-router-dom react-scripts webpack@latest webpack-cli@latest
 

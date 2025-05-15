@@ -1,5 +1,6 @@
+.DS_Store
 .env
 .idea
+backend/secrets.json
 node_modules
 venv
-backend/secrets.json
